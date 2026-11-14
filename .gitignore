@@ -11,3 +11,7 @@ assets/libs/
 node_modules/
 vendor
 .idea
+
+# Local project instructions, skills, and portfolio research
+/AGENTS.md
+/.agents/

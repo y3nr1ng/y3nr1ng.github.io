@@ -1,29 +1,41 @@
 ---
-layout: about
-title: about
+layout: portfolio
+title: Home
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
-
-profile:
-  align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
-
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
-
-latest_posts:
-  enabled: false
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+description: Scientific software, imaging systems, and interactive tools by Yen-Ting Liu.
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
-
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
-
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+<section class="portfolio-hero" aria-labelledby="intro-title">
+  <div>
+    <p class="eyebrow">Yen-Ting Liu · Scientific software</p>
+    <h1 id="intro-title">From instruments<br>to usable images.</h1>
+    <p class="hero-summary">I build software for imaging systems, scientific data, and the people working with them.</p>
+    <p class="hero-detail">My work connects instrument control, acquisition, numerical models, and interactive applications.</p>
+    <div class="portfolio-actions">
+      <a class="portfolio-button" href="#selected-work">Explore my work <span aria-hidden="true">↗</span></a>
+      <a href="mailto:ytliu2@illinois.edu">Get in touch <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <aside class="system-sketch" aria-label="My work spans instruments, acquisition, and data exploration">
+    <span class="sketch-caption">Across the imaging workflow</span>
+    <div class="sketch-node"><span>01</span><strong>Instruments</strong><small>Devices &amp; control</small></div>
+    <div class="sketch-connector" aria-hidden="true">↓</div>
+    <div class="sketch-node"><span>02</span><strong>Acquisition</strong><small>Coordination &amp; data</small></div>
+    <div class="sketch-connector" aria-hidden="true">↓</div>
+    <div class="sketch-node"><span>03</span><strong>Exploration</strong><small>Models &amp; interfaces</small></div>
+  </aside>
+</section>
+<section id="selected-work" class="portfolio-section" aria-labelledby="work-title">
+  <div class="section-heading"><div><p class="eyebrow">Selected projects</p><h2 id="work-title">A closer look at the work.</h2></div><a href="{{ '/projects/' | relative_url }}">All projects <span aria-hidden="true">→</span></a></div>
+  {% assign featured = site.projects | where: 'featured', true | sort: 'importance' %}
+  {% include portfolio-projects.liquid projects=featured %}
+</section>
+<section id="about" class="portfolio-section about-grid" aria-labelledby="about-title">
+  <div><p class="eyebrow">About my work</p><h2 id="about-title">Engineering across<br>the boundaries.</h2></div>
+  <div><p>I work where physical measurements meet software: coordinating instruments, handling image data, and building tools that make results easier to inspect.</p><p>My experience spans C#/.NET instrument software, Python scientific computing, JavaScript and TypeScript applications, and C/WebAssembly data handling.</p><p>I am looking for scientific software and imaging-systems engineering roles, and am also interested in broader software engineering opportunities.</p></div>
+</section>
+<section id="contact" class="portfolio-section contact-section" aria-labelledby="contact-title">
+  <p class="eyebrow">Let's connect</p><h2 id="contact-title">Building tools for science?</h2>
+  <p>I'd be glad to talk about imaging, instrumentation, or software engineering opportunities.</p>
+  <div class="portfolio-actions"><a class="portfolio-button" href="mailto:ytliu2@illinois.edu">Email me <span aria-hidden="true">↗</span></a><a href="https://github.com/y3nr1ng">GitHub</a><a href="https://www.linkedin.com/in/y3nr1ng/">LinkedIn</a></div>
+</section>

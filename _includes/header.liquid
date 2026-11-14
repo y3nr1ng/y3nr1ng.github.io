@@ -2,7 +2,7 @@
   <!-- Nav Bar -->
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
     <div class="container">
-      {% if page.permalink != '/' %}
+      {% if site.first_name %}
         <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
           {% if site.title == 'blank' %}
             {% if site.first_name %}
@@ -117,6 +117,8 @@
               {% endif %}
             {% endif %}
           {% endfor %}
+          <li class="nav-item"><a class="nav-link" href="{{ '/' | relative_url }}#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="mailto:ytliu2@illinois.edu">Contact</a></li>
           {% if site.search_enabled %}
             <!-- Search -->
             <li class="nav-item">
