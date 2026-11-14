@@ -9,14 +9,7 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-work",
-          title: "Work",
-          description: "Selected work in scientific software, imaging, and interactive tools.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/projects/";
-          },
-        },{id: "projects-not-envi",
+  },{id: "projects-not-envi",
           title: 'not-envi',
           description: "A browser-based hyperspectral viewer, from spatial images to spectra and quantitative measurements.",
           section: "Projects",handler: () => {
