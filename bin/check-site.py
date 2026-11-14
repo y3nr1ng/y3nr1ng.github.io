@@ -42,6 +42,11 @@ def check(destination):
                 raise ValueError(f"Starter content in {path}: {placeholder}")
         pages[path] = page
 
+    homepage_links = {urlsplit(link).path for link in pages[root / "index.html"].links}
+    for route in routes[2:]:
+        if "/" + route + "/" not in homepage_links:
+            raise ValueError(f"Project missing from entrance page: {route}")
+
     for path, page in pages.items():
         for href in page.links:
             link = urlsplit(href)

@@ -1,5 +1,6 @@
 ---
 layout: page
+category: Applications
 title: VideoEditor
 permalink: /projects/video-editor/
 description: Local browser editing for experiment recordings and presentation videos.

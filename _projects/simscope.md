@@ -1,5 +1,6 @@
 ---
 layout: page
+category: Scientific software
 title: SimScope
 permalink: /projects/simscope/
 description: Virtual optical benches with explicit physical models and inspectable

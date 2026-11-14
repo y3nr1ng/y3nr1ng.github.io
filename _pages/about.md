@@ -15,10 +15,10 @@ description: Scientific software and imaging systems by Yen-Ting Liu.
     <a href="https://www.linkedin.com/in/y3nr1ng/">LinkedIn</a>
   </div>
 </section>
-<section id="selected-work" class="portfolio-section" aria-labelledby="work-title">
-  <div class="section-heading"><h2 id="work-title">Selected projects</h2><a href="{{ '/projects/' | relative_url }}">All projects</a></div>
-  {% assign featured = site.projects | where: 'featured', true | sort: 'importance' %}
-  {% include portfolio-projects.liquid projects=featured %}
+<section id="projects" class="portfolio-section" aria-labelledby="work-title">
+  <h2 id="work-title">Projects</h2>
+  {% assign projects = site.projects | sort: 'importance' %}
+  {% include portfolio-projects.liquid projects=projects %}
 </section>
 <section id="about" class="portfolio-section" aria-labelledby="about-title">
   <h2 id="about-title">About</h2>

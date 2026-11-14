@@ -89,34 +89,29 @@ button:focus-visible {
 .portfolio-section > p {
   max-width: 46rem;
 }
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
+.project-category {
+  margin: 2rem 0;
 }
-.section-heading > a {
-  font-size: 0.95rem;
+.portfolio .project-category-title {
+  font-size: 1.15rem;
+  margin: 0 0 1rem;
 }
-.portfolio-project {
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--portfolio-line);
+.project-list {
+  padding-left: 1.25rem;
+  margin: 0;
 }
-.project-discipline {
-  color: var(--portfolio-muted);
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
+.project-list > li {
+  padding-left: 0.35rem;
+  margin-bottom: 1.4rem;
 }
-.portfolio-project > p {
+.project-title {
+  font-weight: 500;
+}
+.project-list p {
   max-width: 46rem;
+  margin: 0.25rem 0;
 }
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.25rem;
-  list-style: none;
-  padding: 0;
-  margin: 0.75rem 0 0;
+.project-technologies {
   color: var(--portfolio-muted);
   font-size: 0.85rem;
 }

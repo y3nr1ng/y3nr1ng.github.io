@@ -1,5 +1,6 @@
 ---
 layout: page
+category: Scientific software
 title: not-envi
 permalink: /projects/not-envi/
 description: A browser-based hyperspectral viewer, from spatial images to spectra

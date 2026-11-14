@@ -1,16 +1,21 @@
+{% assign categories = include.projects | group_by: 'category' %}
 <div class="portfolio-projects">
-  {% for project in include.projects %}
-    <article class="portfolio-project">
-      <p class="project-discipline">{{ project.discipline }}</p>
-      <h3>
-        <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-      </h3>
-      <p>{{ project.description }}</p>
-      <ul class="project-tags" aria-label="Technologies">
-        {% for technology in project.technologies %}
-          <li>{{ technology }}</li>
+  {% for category in categories %}
+    <section class="project-category" aria-label="{{ category.name }}">
+      {% if include.index %}
+        <h2 class="project-category-title">{{ category.name }}</h2>
+      {% else %}
+        <h3 class="project-category-title">{{ category.name }}</h3>
+      {% endif %}
+      <ul class="project-list">
+        {% for project in category.items %}
+          <li>
+            <a class="project-title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
+            <p>{{ project.description }}</p>
+            <p class="project-technologies">{{ project.technologies | join: ' · ' }}</p>
+          </li>
         {% endfor %}
       </ul>
-    </article>
+    </section>
   {% endfor %}
 </div>
