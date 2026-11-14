@@ -13,7 +13,7 @@ body {
   font-weight: 400;
 }
 .container {
-  max-width: 960px;
+  max-width: 1200px;
 }
 #navbar {
   box-shadow: none;
@@ -68,8 +68,11 @@ button:focus-visible {
   margin: 0.3rem 0 0.6rem;
 }
 .portfolio-hero {
-  padding: 2rem 0 3rem;
-  max-width: 46rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 4rem;
+  padding: 1.5rem 0 2.5rem;
+  scroll-margin-top: 5rem;
 }
 .hero-summary {
   font-size: 1.2rem;
@@ -89,27 +92,83 @@ button:focus-visible {
 .portfolio-section > p {
   max-width: 46rem;
 }
+.intro-summary {
+  max-width: 43rem;
+}
+.intro-experience {
+  padding-top: 0.4rem;
+}
+.portfolio .intro-experience h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+.intro-experience ul {
+  padding-left: 1.1rem;
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 0.95rem;
+}
+.intro-experience li {
+  margin-bottom: 0.6rem;
+}
+#contact {
+  scroll-margin-top: 5rem;
+}
+.project-directory {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 3rem;
+}
+.project-category-nav {
+  position: sticky;
+  top: 5rem;
+  align-self: start;
+  font-size: 0.95rem;
+}
+.project-category-nav > p {
+  color: var(--portfolio-muted);
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+.project-category-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.project-category-nav li {
+  margin-bottom: 0.75rem;
+}
 .project-category {
-  margin: 2rem 0;
+  margin: 0 0 2.5rem;
+  scroll-margin-top: 5rem;
 }
 .portfolio .project-category-title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   margin: 0 0 1rem;
 }
 .project-list {
-  padding-left: 1.25rem;
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
 .project-list > li {
-  padding-left: 0.35rem;
-  margin-bottom: 1.4rem;
+  display: grid;
+  grid-template-columns: minmax(10rem, 1fr) minmax(0, 2fr);
+  gap: 2rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--portfolio-line);
 }
 .project-title {
   font-weight: 500;
 }
-.project-list p {
-  max-width: 46rem;
-  margin: 0.25rem 0;
+.project-discipline {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--portfolio-muted);
+  font-size: 0.85rem;
+}
+.project-summary p {
+  margin: 0 0 0.4rem;
 }
 .project-technologies {
   color: var(--portfolio-muted);
@@ -135,11 +194,36 @@ footer.sticky-bottom {
 footer.sticky-bottom a {
   color: var(--portfolio-accent);
 }
+@media (max-width: 900px) {
+  .portfolio-hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .project-directory {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .project-category-nav {
+    position: static;
+  }
+  .project-category-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+  .project-category-nav li {
+    margin: 0;
+  }
+}
 @media (max-width: 600px) {
   .portfolio-hero {
     padding: 1rem 0 2rem;
   }
   .portfolio-section {
     padding: 2rem 0;
+  }
+  .project-list > li {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }

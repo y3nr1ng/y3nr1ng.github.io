@@ -1,21 +1,38 @@
 {% assign categories = include.projects | group_by: 'category' %}
-<div class="portfolio-projects">
-  {% for category in categories %}
-    <section class="project-category" aria-label="{{ category.name }}">
-      {% if include.index %}
-        <h2 class="project-category-title">{{ category.name }}</h2>
-      {% else %}
-        <h3 class="project-category-title">{{ category.name }}</h3>
-      {% endif %}
-      <ul class="project-list">
-        {% for project in category.items %}
-          <li>
-            <a class="project-title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
-            <p>{{ project.description }}</p>
-            <p class="project-technologies">{{ project.technologies | join: ' · ' }}</p>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endfor %}
+<div class="project-directory">
+  <nav class="project-category-nav" aria-label="Project categories">
+    <p>Categories</p>
+    <ul>
+      {% for category in categories %}
+        <li>
+          <a href="#category-{{ category.name | slugify }}">{{ category.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <div class="portfolio-projects">
+    {% for category in categories %}
+      <section id="category-{{ category.name | slugify }}" class="project-category" aria-label="{{ category.name }}">
+        {% if include.index %}
+          <h2 class="project-category-title">{{ category.name }}</h2>
+        {% else %}
+          <h3 class="project-category-title">{{ category.name }}</h3>
+        {% endif %}
+        <ul class="project-list">
+          {% for project in category.items %}
+            <li>
+              <div class="project-label">
+                <a class="project-title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
+                <span class="project-discipline">{{ project.discipline }}</span>
+              </div>
+              <div class="project-summary">
+                <p>{{ project.description }}</p>
+                <p class="project-technologies">{{ project.technologies | join: ' · ' }}</p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </div>
 </div>
