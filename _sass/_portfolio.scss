@@ -54,7 +54,8 @@ body {
 }
 .theme-mode .profile-tooltip {
   top: 50%;
-  right: calc(100% + 0.5rem);
+  right: 100%;
+  margin-right: 0.5rem;
   left: auto;
   transform: translateY(-50%);
 }
