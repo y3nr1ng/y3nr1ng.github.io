@@ -119,10 +119,6 @@ button:focus-visible {
   padding: 1.5rem 0 2.5rem;
   scroll-margin-top: 1.5rem;
 }
-.hero-summary {
-  font-size: 1.2rem;
-  color: var(--portfolio-muted);
-}
 .intro-heading {
   display: flex;
   flex-wrap: wrap;
@@ -218,11 +214,6 @@ button:focus-visible {
   align-self: start;
   font-size: 0.95rem;
 }
-.project-category-nav > p {
-  color: var(--portfolio-muted);
-  margin-bottom: 0.75rem;
-  font-size: 0.85rem;
-}
 .project-category-nav ul {
   list-style: none;
   padding: 0;
@@ -253,12 +244,6 @@ button:focus-visible {
 }
 .project-title {
   font-weight: 500;
-}
-.project-discipline {
-  display: block;
-  margin-top: 0.35rem;
-  color: var(--portfolio-muted);
-  font-size: 0.85rem;
 }
 .project-summary p {
   margin: 0 0 0.4rem;

@@ -3,7 +3,6 @@
 {% assign category_names = site.data.portfolio_categories | concat: discovered_names | uniq %}
 <div class="project-directory">
   <nav class="project-category-nav" aria-label="Project categories">
-    <p>Categories</p>
     <ul>
       {% for category_name in category_names %}
         {% assign category = categories | where: 'name', category_name | first %}
@@ -35,7 +34,6 @@
                     {% assign project_link = project.url | relative_url %}
                   {% endif %}
                   <a class="project-title" href="{{ project_link }}">{{ project.title }}</a>
-                  <span class="project-discipline">{{ project.discipline }}</span>
                 </div>
                 <div class="project-summary">
                   <p>{{ project.description }}</p>
