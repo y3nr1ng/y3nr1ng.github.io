@@ -224,7 +224,8 @@ button:focus-visible {
 .project-summary p {
   margin: 0 0 0.4rem;
 }
-.project-meta {
+.project-meta,
+.system-meta {
   color: var(--portfolio-muted);
   font-size: 0.85rem;
   line-height: 1.5;
@@ -232,6 +233,14 @@ button:focus-visible {
 }
 .project-language {
   font-weight: 500;
+}
+.portfolio .system-title {
+  font-size: 1.05rem;
+  margin: 0;
+}
+.system-projects {
+  font-size: 0.85rem;
+  color: var(--portfolio-muted);
 }
 .work-intro {
   padding: 2rem 0;

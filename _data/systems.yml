@@ -1,0 +1,25 @@
+- title: Infrared laser-scanning microscopy
+  role: Acquisition software and instrument integration
+  institution: UIUC
+  description: I develop acquisition software for infrared laser-scanning microscopes, coordinating device control, synchronized data collection, and processing during acquisition.
+  projects:
+    - title: ScopeEngine / ciMicroscope
+      url: /projects/scopeengine/
+- title: Light-sheet microscopy
+  role: Acquisition tools and volumetric processing
+  institution: Academia Sinica
+  description: I developed acquisition tools, volumetric image-fusion methods, and processing pipelines for large microscopy datasets.
+  projects:
+    - title: uToolbox
+      url: https://github.com/y3nr1ng/utoolbox
+    - title: DeconvLR
+      url: https://github.com/y3nr1ng/DeconvLR
+- title: Microscopy computing cluster
+  role: Cluster setup and processing workflows
+  institution: Academia Sinica
+  description: I established a multi-server cluster for large microscopy datasets, supporting distributed image processing and storage.
+  projects:
+    - title: Dask on TORQUE
+      url: https://github.com/cbc-group/pbs
+    - title: ThunderSTORM cluster scripts
+      url: https://github.com/cbc-group/torque-thunderstorm
