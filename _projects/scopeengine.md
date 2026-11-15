@@ -8,10 +8,8 @@ description: Acquisition software connecting microscope workflows with vendor-sp
 discipline: Instrument control
 importance: 1
 featured: true
-technologies:
-  - C# / .NET
-  - gRPC
-  - Shared memory
+language: C# / .NET
+technology: QCL microscopy
 publications:
   - title: Designing software solutions for infrared chemical imaging and digital pathology
     label: SPIE 2025 proceedings

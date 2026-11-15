@@ -8,10 +8,8 @@ description: A browser-based hyperspectral viewer, from spatial images to spectr
 discipline: Scientific data tools
 importance: 2
 featured: true
-technologies:
-  - JavaScript
-  - C / WebAssembly
-  - Scientific visualization
+language: JavaScript
+technology: C / WebAssembly
 ---
 
 A hyperspectral image contains a spectrum at each pixel. Understanding it requires

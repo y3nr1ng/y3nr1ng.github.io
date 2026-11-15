@@ -34,14 +34,18 @@
                     {% assign project_link = project.url | relative_url %}
                   {% endif %}
                   <a class="project-title" href="{{ project_link }}">{{ project.title }}</a>
+                  {% if project.language or project.technology %}
+                    <p class="project-meta">
+                      {% if project.language -%}
+                        <span class="project-language">{{ project.language | escape }}</span>
+                      {%- endif %}
+                      {% if project.language and project.technology %} · {% endif %}
+                      {% if project.technology %}{{ project.technology | escape }}{% endif %}
+                    </p>
+                  {% endif %}
                 </div>
                 <div class="project-summary">
                   <p>{{ project.description }}</p>
-                  <ul class="project-tags" aria-label="Project tags">
-                    {% for tag in project.technologies %}
-                      <li>{{ tag }}</li>
-                    {% endfor %}
-                  </ul>
                   {% include project-publications.liquid publications=project.publications compact=true %}
                 </div>
               </li>

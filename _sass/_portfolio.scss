@@ -248,21 +248,14 @@ button:focus-visible {
 .project-summary p {
   margin: 0 0 0.4rem;
 }
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  list-style: none;
-  padding: 0;
-  margin: 0.6rem 0 0;
-}
-.project-tags > li {
+.project-meta {
   color: var(--portfolio-muted);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   line-height: 1.5;
-  border: 1px solid var(--portfolio-line);
-  border-radius: 3px;
-  padding: 0.1rem 0.45rem;
+  margin: 0.3rem 0 0;
+}
+.project-language {
+  font-weight: 500;
 }
 .work-intro {
   padding: 2rem 0;

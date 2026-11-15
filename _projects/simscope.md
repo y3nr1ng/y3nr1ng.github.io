@@ -8,10 +8,8 @@ description: Virtual optical benches with explicit physical models and inspectab
 discipline: Numerical simulation
 importance: 3
 featured: true
-technologies:
-  - Python
-  - Numerical methods
-  - Browser visualization
+language: Python
+technology: Numerical optics
 ---
 
 An optical simulation needs to explain which physical setup was modeled, how light

@@ -7,10 +7,8 @@ description: Local browser editing for experiment recordings and presentation vi
 discipline: Interactive applications
 importance: 4
 featured: false
-technologies:
-  - React / TypeScript
-  - FFmpeg
-  - WebAssembly
+language: TypeScript
+technology: React / FFmpeg
 ---
 
 I wanted a quick way to trim and annotate recordings for presentations without
