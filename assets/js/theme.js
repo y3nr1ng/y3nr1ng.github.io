@@ -22,10 +22,18 @@ let setThemeSetting = (themeSetting) => {
   applyTheme();
 };
 
-// Highlight the preference, including Auto even when the computed theme changes.
+// Show the preference, including Auto even when the computed theme changes.
 let syncThemeControls = (themeSetting) => {
-  document.querySelectorAll("[data-theme-mode]").forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.themeMode === themeSetting));
+  const modes = {
+    system: { name: "Auto", icon: "fa-desktop", next: "Light" },
+    light: { name: "Light", icon: "fa-sun", next: "Dark" },
+    dark: { name: "Dark", icon: "fa-moon", next: "Auto" },
+  };
+  const mode = modes[themeSetting];
+  document.querySelectorAll("[data-theme-cycle]").forEach((button) => {
+    button.setAttribute("aria-label", `${mode.name} theme. Switch to ${mode.next} theme`);
+    button.querySelector("i").className = `fa-solid ${mode.icon}`;
+    button.querySelector(".profile-tooltip").textContent = `${mode.name} → ${mode.next}`;
   });
 };
 
@@ -252,11 +260,13 @@ let setSearchTheme = (theme) => {
   }
 };
 
+let themeTransitionTimer;
 let transTheme = () => {
+  window.clearTimeout(themeTransitionTimer);
   document.documentElement.classList.add("transition");
-  window.setTimeout(() => {
+  themeTransitionTimer = window.setTimeout(() => {
     document.documentElement.classList.remove("transition");
-  }, 500);
+  }, 120);
 };
 
 // Determine the expected state of the theme toggle, which can be "dark", "light", or
@@ -292,10 +302,8 @@ let initTheme = () => {
 
   document.addEventListener("DOMContentLoaded", function () {
     syncThemeControls(determineThemeSetting());
-    document.querySelectorAll("[data-theme-mode]").forEach((button) => {
-      button.addEventListener("click", function () {
-        setThemeSetting(button.dataset.themeMode);
-      });
+    document.querySelectorAll("[data-theme-cycle]").forEach((button) => {
+      button.addEventListener("click", toggleThemeSetting);
     });
   });
 

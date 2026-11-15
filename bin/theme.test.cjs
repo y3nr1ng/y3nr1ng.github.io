@@ -8,8 +8,10 @@ function openPage(storage = new Map(), prefersDark = false) {
   const attrs = new Map();
   const handlers = {};
   let ready = false;
-  const buttons = ["system", "light", "dark"].map((mode) => ({
-    dataset: { themeMode: mode },
+  const icon = {};
+  const tooltip = {};
+  const button = {
+    querySelector: (query) => (query === "i" ? icon : tooltip),
     attrs: {},
     setAttribute(name, value) {
       this.attrs[name] = value;
@@ -17,17 +19,30 @@ function openPage(storage = new Map(), prefersDark = false) {
     addEventListener(name, fn) {
       this[name] = fn;
     },
-  }));
+  };
+  const timers = new Map();
+  let timerId = 0;
+  const classes = new Set();
   const media = { matches: prefersDark, addEventListener: (_name, fn) => (handlers.system = fn) };
   const elements = { highlight_theme_light: {}, highlight_theme_dark: {} };
   const context = vm.createContext({
     localStorage: { getItem: (key) => storage.get(key), setItem: (key, value) => storage.set(key, value) },
-    window: { matchMedia: () => media, setTimeout: (fn) => fn() },
+    window: {
+      matchMedia: () => media,
+      setTimeout: (fn) => {
+        timers.set(++timerId, fn);
+        return timerId;
+      },
+      clearTimeout: (id) => timers.delete(id),
+    },
     document: {
-      documentElement: { setAttribute: (key, value) => attrs.set(key, value), classList: { add() {}, remove() {} } },
+      documentElement: {
+        setAttribute: (key, value) => attrs.set(key, value),
+        classList: { add: (name) => classes.add(name), remove: (name) => classes.delete(name) },
+      },
       getElementById: (id) => elements[id] || null,
       querySelector: () => null,
-      querySelectorAll: (query) => (ready && query === "[data-theme-mode]" ? buttons : []),
+      querySelectorAll: (query) => (ready && query === "[data-theme-cycle]" ? [button] : []),
       getElementsByTagName: () => [],
       getElementsByClassName: () => [],
       addEventListener: (_name, fn) => (handlers.ready = fn),
@@ -37,10 +52,19 @@ function openPage(storage = new Map(), prefersDark = false) {
   ready = true;
   handlers.ready();
   return {
-    selected: () => buttons.filter((button) => button.attrs["aria-pressed"] === "true").map((button) => button.dataset.themeMode),
+    selected: () => storage.get("theme"),
+    label: () => button.attrs["aria-label"],
+    icon: () => icon.className,
+    tooltip: () => tooltip.textContent,
+    pendingTransitions: () => timers.size,
+    transitioning: () => classes.has("transition"),
+    finishTransition() {
+      for (const fn of timers.values()) fn();
+      timers.clear();
+    },
     theme: () => attrs.get("data-theme"),
-    choose(value) {
-      buttons.find((button) => button.dataset.themeMode === value).click();
+    cycle() {
+      button.click();
     },
     system(value) {
       media.matches = value;
@@ -52,24 +76,24 @@ function openPage(storage = new Map(), prefersDark = false) {
 test("Auto follows system changes; explicit choices remain stable and survive navigation", () => {
   const storage = new Map();
   const page = openPage(storage, false);
-  assert.deepEqual(page.selected(), ["system"]);
+  assert.equal(page.selected(), "system");
   assert.equal(page.theme(), "light");
   page.system(true);
   assert.equal(page.theme(), "dark");
-  assert.deepEqual(page.selected(), ["system"]);
-  page.choose("light");
+  assert.equal(page.selected(), "system");
+  page.cycle();
   assert.equal(page.theme(), "light");
   page.system(true);
   assert.equal(page.theme(), "light");
   const nextPage = openPage(storage, true);
-  assert.deepEqual(nextPage.selected(), ["light"]);
+  assert.equal(nextPage.selected(), "light");
   assert.equal(nextPage.theme(), "light");
-  nextPage.choose("dark");
-  assert.deepEqual(nextPage.selected(), ["dark"]);
+  nextPage.cycle();
+  assert.equal(nextPage.selected(), "dark");
   nextPage.system(false);
   assert.equal(nextPage.theme(), "dark");
-  nextPage.choose("system");
-  assert.deepEqual(nextPage.selected(), ["system"]);
+  nextPage.cycle();
+  assert.equal(nextPage.selected(), "system");
   assert.equal(nextPage.theme(), "light");
   nextPage.system(true);
   assert.equal(nextPage.theme(), "dark");
@@ -77,6 +101,27 @@ test("Auto follows system changes; explicit choices remain stable and survive na
 
 test("unrecognized stored preference falls back to Auto", () => {
   const page = openPage(new Map([["theme", "unknown"]]), true);
-  assert.deepEqual(page.selected(), ["system"]);
+  assert.equal(page.selected(), "system");
   assert.equal(page.theme(), "dark");
+});
+
+test("one button cycles repeatedly with accurate labels and no stale transition timers", () => {
+  const page = openPage();
+  const modes = [
+    ["system", "Auto", "Light", "desktop"],
+    ["light", "Light", "Dark", "sun"],
+    ["dark", "Dark", "Auto", "moon"],
+  ];
+  for (let i = 0; i < 9; i++) {
+    const [mode, name, next, icon] = modes[i % 3];
+    assert.equal(page.selected(), mode);
+    assert.equal(page.label(), `${name} theme. Switch to ${next} theme`);
+    assert.equal(page.tooltip(), `${name} → ${next}`);
+    assert.equal(page.icon(), `fa-solid fa-${icon}`);
+    assert.equal(page.pendingTransitions(), 1);
+    assert.equal(page.transitioning(), true);
+    page.cycle();
+  }
+  page.finishTransition();
+  assert.equal(page.transitioning(), false);
 });
