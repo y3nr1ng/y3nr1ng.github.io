@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - "assets/**"
-      - "bin/check-site.py"
+      - "bin/**"
       - "_sass/**"
       - "_scripts/**"
       - "**.bib"
@@ -37,7 +37,7 @@ on:
       - main
     paths:
       - "assets/**"
-      - "bin/check-site.py"
+      - "bin/**"
       - "_sass/**"
       - "_scripts/**"
       - "**.bib"
@@ -101,7 +101,9 @@ jobs:
           npm install -g purgecss
           purgecss -c purgecss.config.js
       - name: Check portfolio output
-        run: python bin/check-site.py _site
+        run: |
+          node --test bin/theme.test.cjs
+          python bin/check-site.py _site
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4

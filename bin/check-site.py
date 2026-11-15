@@ -37,6 +37,8 @@ def check(destination):
         page = Page(source)
         if page.headings != 1:
             raise ValueError(f"Expected one main heading: {path}")
+        if "navbar" in page.ids or "theme-setting" not in page.ids:
+            raise ValueError(f"Expected corner theme control without a navigation bar: {path}")
         for placeholder in ["Write your biography here", "Albert Einstein", "you@example.com"]:
             if placeholder in source:
                 raise ValueError(f"Starter content in {path}: {placeholder}")

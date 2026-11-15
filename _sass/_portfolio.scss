@@ -15,13 +15,40 @@ body {
 .container {
   max-width: 1200px;
 }
-#navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--portfolio-line);
+.page-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
+  font-size: 0.85rem;
 }
-#navbar .navbar-brand {
-  font-size: 1.1rem;
-  font-weight: 600;
+.back-to-projects {
+  color: var(--portfolio-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.theme-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+.theme-control label {
+  margin: 0;
+  color: var(--portfolio-muted);
+}
+.theme-control select {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 3px;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
+}
+.theme-control select:focus-visible {
+  outline: 3px solid var(--portfolio-accent);
+  outline-offset: 3px;
 }
 .portfolio a {
   color: var(--portfolio-accent);
@@ -72,7 +99,7 @@ button:focus-visible {
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
   gap: 4rem;
   padding: 1.5rem 0 2.5rem;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 1.5rem;
 }
 .hero-summary {
   font-size: 1.2rem;
@@ -106,7 +133,7 @@ button:focus-visible {
 .portfolio-section {
   border-top: 1px solid var(--portfolio-line);
   padding: 2.5rem 0;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 1.5rem;
 }
 .portfolio-section > p {
   max-width: 46rem;
@@ -136,7 +163,7 @@ button:focus-visible {
   margin-bottom: 0.6rem;
 }
 #contact {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 1.5rem;
 }
 .project-directory {
   display: grid;
@@ -145,7 +172,7 @@ button:focus-visible {
 }
 .project-category-nav {
   position: sticky;
-  top: 5rem;
+  top: 1.5rem;
   align-self: start;
   font-size: 0.95rem;
 }
@@ -164,7 +191,7 @@ button:focus-visible {
 }
 .project-category {
   margin: 0 0 2.5rem;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 1.5rem;
 }
 .portfolio .project-category-title {
   font-size: 1.2rem;

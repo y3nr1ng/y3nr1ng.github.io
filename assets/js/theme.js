@@ -17,6 +17,8 @@ let setThemeSetting = (themeSetting) => {
   localStorage.setItem("theme", themeSetting);
 
   document.documentElement.setAttribute("data-theme-setting", themeSetting);
+  const selector = document.getElementById("theme-setting");
+  if (selector) selector.value = themeSetting;
 
   applyTheme();
 };
@@ -282,13 +284,14 @@ let initTheme = () => {
 
   setThemeSetting(themeSetting);
 
-  // Add event listener to the theme toggle button.
   document.addEventListener("DOMContentLoaded", function () {
-    const mode_toggle = document.getElementById("light-toggle");
-
-    mode_toggle.addEventListener("click", function () {
-      toggleThemeSetting();
-    });
+    const selector = document.getElementById("theme-setting");
+    if (selector) {
+      selector.value = determineThemeSetting();
+      selector.addEventListener("change", function () {
+        setThemeSetting(selector.value);
+      });
+    }
   });
 
   // Add event listener to the system theme preference change.
