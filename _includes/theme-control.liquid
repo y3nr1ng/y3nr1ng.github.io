@@ -1,8 +1,11 @@
-<div class="theme-control">
-  <label for="theme-setting">Theme</label>
-  <select id="theme-setting" name="theme">
-    <option value="system">Auto</option>
-    <option value="light">Light</option>
-    <option value="dark">Dark</option>
-  </select>
+<div id="theme-setting" class="theme-control" role="group" aria-label="Color theme">
+  <button type="button" class="theme-mode" data-theme-mode="system" aria-label="Auto theme, follow system" aria-pressed="true">
+    <i class="fa-solid fa-desktop" aria-hidden="true"></i><span class="profile-tooltip" aria-hidden="true">Auto</span>
+  </button>
+  <button type="button" class="theme-mode" data-theme-mode="light" aria-label="Light theme" aria-pressed="false">
+    <i class="fa-solid fa-sun" aria-hidden="true"></i><span class="profile-tooltip" aria-hidden="true">Light</span>
+  </button>
+  <button type="button" class="theme-mode" data-theme-mode="dark" aria-label="Dark theme" aria-pressed="false">
+    <i class="fa-solid fa-moon" aria-hidden="true"></i><span class="profile-tooltip" aria-hidden="true">Dark</span>
+  </button>
 </div>

@@ -19,8 +19,10 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-height: 70px;
   padding-top: 1rem;
   padding-bottom: 0.75rem;
+  padding-right: 165px;
   font-size: 0.85rem;
 }
 .back-to-projects {
@@ -29,26 +31,41 @@ body {
   text-underline-offset: 3px;
 }
 .theme-control {
+  position: fixed;
+  top: max(0.75rem, env(safe-area-inset-top));
+  right: max(0.75rem, env(safe-area-inset-right));
+  z-index: 100;
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: auto;
-}
-.theme-control label {
-  margin: 0;
-  color: var(--portfolio-muted);
-}
-.theme-control select {
-  font: inherit;
-  padding: 0.35rem 0.5rem;
+  gap: 2px;
+  padding: 3px;
   border: 1px solid var(--portfolio-line);
-  border-radius: 3px;
+  border-radius: 6px;
   background: var(--global-bg-color);
-  color: var(--global-text-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-.theme-control select:focus-visible {
-  outline: 3px solid var(--portfolio-accent);
-  outline-offset: 3px;
+.theme-mode {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--portfolio-muted);
+  cursor: pointer;
+  font-size: 1.15rem;
+}
+.theme-mode[aria-pressed="true"] {
+  color: var(--portfolio-accent);
+  box-shadow: inset 0 0 0 2px var(--portfolio-accent);
+}
+.theme-mode:hover .profile-tooltip,
+.theme-mode:focus-visible .profile-tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 .portfolio a {
   color: var(--portfolio-accent);

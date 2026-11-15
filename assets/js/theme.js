@@ -17,10 +17,16 @@ let setThemeSetting = (themeSetting) => {
   localStorage.setItem("theme", themeSetting);
 
   document.documentElement.setAttribute("data-theme-setting", themeSetting);
-  const selector = document.getElementById("theme-setting");
-  if (selector) selector.value = themeSetting;
+  syncThemeControls(themeSetting);
 
   applyTheme();
+};
+
+// Highlight the preference, including Auto even when the computed theme changes.
+let syncThemeControls = (themeSetting) => {
+  document.querySelectorAll("[data-theme-mode]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.themeMode === themeSetting));
+  });
 };
 
 // Apply the computed dark or light theme to the website.
@@ -285,13 +291,12 @@ let initTheme = () => {
   setThemeSetting(themeSetting);
 
   document.addEventListener("DOMContentLoaded", function () {
-    const selector = document.getElementById("theme-setting");
-    if (selector) {
-      selector.value = determineThemeSetting();
-      selector.addEventListener("change", function () {
-        setThemeSetting(selector.value);
+    syncThemeControls(determineThemeSetting());
+    document.querySelectorAll("[data-theme-mode]").forEach((button) => {
+      button.addEventListener("click", function () {
+        setThemeSetting(button.dataset.themeMode);
       });
-    }
+    });
   });
 
   // Add event listener to the system theme preference change.
