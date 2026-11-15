@@ -24,6 +24,7 @@ jobs:
       - name: Check local page links
         uses: lycheeverse/lychee-action@v2.1.0
         with:
+          lycheeVersion: v0.24.2
           fail: true
           failIfEmpty: true
-          args: --offline --root-dir "$GITHUB_WORKSPACE/_site" --verbose --no-progress '_site/*.html' '_site/projects/**/*.html'
+          args: --offline --root-dir "${{ github.workspace }}/_site" --verbose --no-progress '_site/*.html' '_site/projects/**/*.html'
