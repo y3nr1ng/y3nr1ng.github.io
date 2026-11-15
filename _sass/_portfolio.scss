@@ -118,17 +118,41 @@ button:focus-visible {
 .profile-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  font-size: 0.85rem;
+  gap: 0.25rem;
 }
 .profile-links a {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  white-space: nowrap;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  text-decoration: none;
+  border-radius: 3px;
 }
 .profile-links i {
-  font-size: 1rem;
+  font-size: 1.375rem;
+}
+.profile-tooltip {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 10;
+  white-space: nowrap;
+  background: var(--global-text-color);
+  color: var(--global-bg-color);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+}
+.profile-links a:hover .profile-tooltip,
+.profile-links a:focus-visible .profile-tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 .portfolio-section {
   border-top: 1px solid var(--portfolio-line);
@@ -257,6 +281,14 @@ button:focus-visible {
 }
 .site-footer p {
   margin: 0;
+}
+.site-footer .footer-credits {
+  margin-top: 0.35rem;
+}
+.site-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 @media (max-width: 900px) {
   .portfolio-hero {
