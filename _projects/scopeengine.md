@@ -10,6 +10,10 @@ importance: 1
 featured: true
 language: C#
 technology: .NET / Avalonia
+highlight:
+  contribution: I develop a microscope acquisition framework and desktop application, separating acquisition workflows from vendor drivers and transferring acquired data through shared memory.
+  label: Earlier microscope software and demonstration
+  url: https://github.com/chemimage/Cisl.Qclm.Public
 publications:
   - title: Designing software solutions for infrared chemical imaging and digital pathology
     label: SPIE 2025 proceedings

@@ -19,6 +19,23 @@ description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems
   <h2 id="systems-title">Systems</h2>
   {% include portfolio-systems.liquid %}
 </section>
+<section id="selected-projects" class="portfolio-section" aria-labelledby="selected-projects-title">
+  <h2 id="selected-projects-title">Selected projects</h2>
+  {% assign highlights = site.projects | where_exp: 'project', 'project.highlight' | sort: 'importance' %}
+  <ul class="project-list">
+    {% for project in highlights %}
+      <li>
+        <div class="project-label">
+          <a class="project-title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
+        </div>
+        <div class="project-summary">
+          <p>{{ project.highlight.contribution }}</p>
+          <p class="highlight-artifact"><a href="{% if project.highlight.url contains '://' %}{{ project.highlight.url }}{% else %}{{ project.highlight.url | relative_url }}{% endif %}">{{ project.highlight.label }}</a></p>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
 <section id="projects" class="portfolio-section" aria-labelledby="work-title">
   <h2 id="work-title">Software</h2>
   {% assign projects = site.projects | concat: site.data.project_inventory | sort: 'importance' %}
