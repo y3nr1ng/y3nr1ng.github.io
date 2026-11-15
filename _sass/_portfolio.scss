@@ -221,9 +221,21 @@ button:focus-visible {
 .project-summary p {
   margin: 0 0 0.4rem;
 }
-.project-technologies {
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0 0;
+}
+.project-tags > li {
   color: var(--portfolio-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 3px;
+  padding: 0.1rem 0.45rem;
 }
 .work-intro {
   padding: 2rem 0;
@@ -236,14 +248,15 @@ button:focus-visible {
   font-size: 1.05rem;
   line-height: 1.8;
 }
-footer.sticky-bottom {
-  border-top: 1px solid var(--portfolio-line);
-  background: var(--global-bg-color);
+.site-footer {
+  border: 0;
+  background: transparent;
   color: var(--portfolio-muted);
-  padding: 1.3rem 0;
+  font-size: 0.8rem;
+  padding: 1rem 0 1.5rem;
 }
-footer.sticky-bottom a {
-  color: var(--portfolio-accent);
+.site-footer p {
+  margin: 0;
 }
 @media (max-width: 900px) {
   .portfolio-hero {

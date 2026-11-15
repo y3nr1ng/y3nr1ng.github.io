@@ -1,6 +1,6 @@
 ---
 layout: page
-category: Scientific software
+category: Instrumentation
 title: ScopeEngine / ciMicroscope
 permalink: /projects/scopeengine/
 description: Acquisition software connecting microscope workflows with vendor-specific

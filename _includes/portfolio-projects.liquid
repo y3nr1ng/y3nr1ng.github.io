@@ -22,12 +22,21 @@
           {% for project in category.items %}
             <li>
               <div class="project-label">
-                <a class="project-title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
+                {% if project.url contains '://' %}
+                  {% assign project_link = project.url %}
+                {% else %}
+                  {% assign project_link = project.url | relative_url %}
+                {% endif %}
+                <a class="project-title" href="{{ project_link }}">{{ project.title }}</a>
                 <span class="project-discipline">{{ project.discipline }}</span>
               </div>
               <div class="project-summary">
                 <p>{{ project.description }}</p>
-                <p class="project-technologies">{{ project.technologies | join: ' · ' }}</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  {% for tag in project.technologies %}
+                    <li>{{ tag }}</li>
+                  {% endfor %}
+                </ul>
               </div>
             </li>
           {% endfor %}

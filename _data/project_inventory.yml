@@ -1,0 +1,216 @@
+# Initial repository index; descriptions and grouping can be refined over time.
+- title: AnyCite
+  url: https://github.com/y3nr1ng/AnyCite
+  category: Applications
+  description: Citation lookup and formatting from identifiers, publisher URLs, or existing references.
+  technologies:
+    - JavaScript
+    - APIs
+  discipline: Personal project
+  importance: 10
+- title: uToolbox
+  url: https://github.com/y3nr1ng/utoolbox
+  category: Scientific software
+  description: Python tools for lattice light-sheet microscopy image processing.
+  technologies:
+    - Python
+    - Microscopy
+  discipline: Earlier work
+  importance: 11
+- title: DeconvLR
+  url: https://github.com/y3nr1ng/DeconvLR
+  category: Scientific software
+  description: CUDA implementation of Richardson–Lucy deconvolution with total-variation regularization.
+  technologies:
+    - C++
+    - CUDA
+    - Deconvolution
+  discipline: Earlier work
+  importance: 12
+- title: RANSAC-Flow reimplementation
+  url: https://github.com/y3nr1ng/RANSAC-Flow
+  category: Scientific software
+  description: An attempt to reimplement a two-stage image-alignment method.
+  technologies:
+    - Python
+    - Image registration
+  discipline: Reimplementation
+  importance: 13
+- title: Stack transposer
+  url: https://github.com/y3nr1ng/stack-transposer
+  category: Scientific software
+  description: Reorganizes volume-based TIFF stacks into timepoint-based stacks.
+  technologies:
+    - C++
+    - TIFF
+  discipline: Earlier work
+  importance: 14
+- title: RSpec
+  url: https://github.com/y3nr1ng/rspec
+  category: Scientific software
+  description: A utility for analyzing Raman spectrum composition.
+  technologies:
+    - Python
+    - Spectroscopy
+  discipline: Earlier work
+  importance: 15
+- title: Microscopy stitching
+  url: https://github.com/cbc-group/stitching
+  category: Scientific software
+  description: Image-stitching tools developed in the CBC group.
+  technologies:
+    - Python
+    - Stitching
+  discipline: Contribution
+  importance: 16
+- title: Microscopy segmentation
+  url: https://github.com/cbc-group/segmentation
+  category: Scientific software
+  description: Tools used in a microscopy segmentation pipeline.
+  technologies:
+    - Python
+    - Segmentation
+  discipline: Contribution
+  importance: 17
+- title: SLM pattern utilities
+  url: https://github.com/cbc-group/pattern
+  category: Scientific software
+  description: Utilities for working with spatial light modulator patterns.
+  technologies:
+    - Python
+    - Optics
+  discipline: Contribution
+  importance: 18
+- title: MATLAB camera interface
+  url: https://github.com/y3nr1ng/libdc1394-matlab
+  category: Instrumentation
+  description: A MATLAB wrapper for the libdc1394 camera library.
+  technologies:
+    - C++
+    - MATLAB
+    - Cameras
+  discipline: Earlier work
+  importance: 19
+- title: "Olive: Hamamatsu cameras"
+  url: https://github.com/y3nr1ng/olive-camera-dcamapi
+  category: Instrumentation
+  description: Camera integration around Hamamatsu DCAM-API.
+  technologies:
+    - Python
+    - Cameras
+  discipline: Earlier work
+  importance: 20
+- title: "Olive: PI motion control"
+  url: https://github.com/y3nr1ng/olive-motion-pi
+  category: Instrumentation
+  description: Motion-control integration using Physik Instrumente GCS2.
+  technologies:
+    - Python
+    - Motion control
+  discipline: Earlier work
+  importance: 21
+- title: Arduino Due microscope firmware
+  url: https://github.com/cbc-group/mm_due
+  category: Instrumentation
+  description: Firmware compatible with the Arduino32Hub adapter, including DAC control for sheet-scan microscopes.
+  technologies:
+    - C++
+    - Firmware
+    - Microscopy
+  discipline: Contribution
+  importance: 22
+- title: FROG reconstruction
+  url: https://github.com/y3nr1ng/FROG-LabVIEW
+  category: Instrumentation
+  description: Frequency-resolved optical gating pulse-retrieval software.
+  technologies:
+    - C
+    - LabVIEW
+    - Optics
+  discipline: Earlier work
+  importance: 23
+- title: Dask on TORQUE
+  url: https://github.com/cbc-group/pbs
+  category: Infrastructure
+  description: Adapted Pangeo-based scripts for launching Dask environments on a TORQUE cluster.
+  technologies:
+    - Dask
+    - TORQUE
+    - Shell
+  discipline: Contribution
+  importance: 24
+- title: ThunderSTORM cluster scripts
+  url: https://github.com/cbc-group/torque-thunderstorm
+  category: Infrastructure
+  description: Scripts for running ThunderSTORM analysis on a TORQUE cluster.
+  technologies:
+    - Python
+    - Microscopy
+    - TORQUE
+  discipline: Contribution
+  importance: 25
+- title: OpenStack documentation
+  url: https://github.com/csie-cloud/document
+  category: Infrastructure
+  description: Team documentation covering OpenStack architecture, deployment, and operations.
+  technologies:
+    - OpenStack
+    - Documentation
+  discipline: Contribution
+  importance: 26
+- title: libswitch
+  url: https://github.com/y3nr1ng/libswitch
+  category: Infrastructure
+  description: An abstraction layer targeting Cisco and HP layer-2 switches; later superseded by an Ansible-based
+    approach.
+  technologies:
+    - Python
+    - Networking
+  discipline: Earlier work
+  importance: 27
+- title: MIPS processor
+  url: https://github.com/y3nr1ng/MIPS
+  category: Course projects
+  description: A five-stage pipelined MIPS processor model with an L1 cache.
+  technologies:
+    - Verilog
+    - Computer architecture
+  discipline: Course project
+  importance: 28
+- title: Forward and Reverse Design
+  url: https://github.com/DSDL2016/FwdRevDesign
+  category: Course projects
+  description: An interactive forward/reverse engineering project for a digital-systems design course.
+  technologies:
+    - JavaScript
+    - Digital systems
+  discipline: Team course project
+  importance: 29
+- title: DSA final project
+  url: https://github.com/sudo-rm-slash/DSA-Final
+  category: Course projects
+  description: A basic bank-system implementation for the NTU data-structures course.
+  technologies:
+    - C++
+    - Data structures
+  discipline: Team course project
+  importance: 30
+- title: Two-choice task
+  url: https://github.com/NTULINE417/two_choice_task
+  category: Research tools
+  description: MATLAB code for a two-choice dynamic foraging task.
+  technologies:
+    - MATLAB
+    - Behavioral experiments
+  discipline: Contribution
+  importance: 31
+- title: ZarrSharp
+  url: https://github.com/chemimage/ZarrSharp
+  category: Scientific software
+  description: An AI-assisted C# translation of zarr-python, with reference-style interoperability examples.
+  technologies:
+    - C#
+    - .NET
+    - Zarr
+  discipline: Experimental library
+  importance: 32

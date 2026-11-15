@@ -8,5 +8,5 @@ nav_order: 1
 ---
 
 <header class="work-intro"><h1>Projects</h1><p>Selected projects in instrument control, scientific computing, and browser applications.</p></header>
-{% assign projects = site.projects | sort: 'importance' %}
+{% assign projects = site.projects | concat: site.data.project_inventory | sort: 'importance' %}
 {% include portfolio-projects.liquid projects=projects index=true %}

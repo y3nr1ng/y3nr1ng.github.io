@@ -29,6 +29,6 @@ description: Scientific software and imaging systems by Yen-Ting Liu.
 </section>
 <section id="projects" class="portfolio-section" aria-labelledby="work-title">
   <h2 id="work-title">Projects</h2>
-  {% assign projects = site.projects | sort: 'importance' %}
+  {% assign projects = site.projects | concat: site.data.project_inventory | sort: 'importance' %}
   {% include portfolio-projects.liquid projects=projects %}
 </section>
