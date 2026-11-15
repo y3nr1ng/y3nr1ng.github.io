@@ -2,7 +2,7 @@
 layout: portfolio
 title: Home
 permalink: /
-description: Yen-Ting Liu, a graduate student at UIUC working on microscopy systems, acquisition software, and image processing.
+description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems, acquisition software, and image processing.
 ---
 
 <section id="about" class="portfolio-hero" aria-labelledby="intro-title">
@@ -11,7 +11,7 @@ description: Yen-Ting Liu, a graduate student at UIUC working on microscopy syst
       <h1 id="intro-title">Yen-Ting Liu</h1>
       {% include profile-links.liquid %}
     </div>
-    <p>I'm a graduate student in electrical and computer engineering at the <a href="https://illinois.edu/">University of Illinois Urbana-Champaign</a>. My work focuses on microscopy, from instrument control and acquisition to image processing and analysis.</p>
+    <p>I'm a PhD candidate in electrical and computer engineering at the <a href="https://illinois.edu/">University of Illinois Urbana-Champaign</a>. My work focuses on microscopy, from instrument control and acquisition to image processing and analysis.</p>
     <p>I studied computer science and life science at <a href="https://www.ntu.edu.tw/english/">National Taiwan University</a> and previously worked on light-sheet microscopy at <a href="https://www.sinica.edu.tw/en/">Academia Sinica</a>.</p>
   </div>
 </section>
