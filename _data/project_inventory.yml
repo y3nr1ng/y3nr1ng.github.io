@@ -2,23 +2,21 @@
 # Importance is a curated display priority, not a repository date.
 - title: AnyCite
   url: https://github.com/y3nr1ng/AnyCite
-  category: Applications
+  category: Applications & utilities
   description: Citation lookup and formatting from identifiers, publisher URLs, or existing references.
   language: JavaScript
-  technology: Citation APIs
   discipline: Personal project
   importance: 10
 - title: uToolbox
   url: https://github.com/y3nr1ng/utoolbox
-  category: Scientific software
+  category: Libraries & developer tools
   description: Python tools for lattice light-sheet microscopy image processing.
   language: Python
-  technology: Light-sheet microscopy
   discipline: Earlier work
   importance: 11
 - title: DeconvLR
   url: https://github.com/y3nr1ng/DeconvLR
-  category: Scientific software
+  category: Libraries & developer tools
   description: CUDA implementation of Richardson–Lucy deconvolution with total-variation regularization.
   language: C++
   technology: CUDA
@@ -26,15 +24,14 @@
   importance: 12
 - title: RANSAC-Flow reimplementation
   url: https://github.com/y3nr1ng/RANSAC-Flow
-  category: Scientific software
+  category: Analysis & simulation
   description: An attempt to reimplement a two-stage image-alignment method.
   language: Python
-  technology: Image registration
   discipline: Reimplementation
   importance: 13
 - title: Stack transposer
   url: https://github.com/y3nr1ng/stack-transposer
-  category: Scientific software
+  category: Analysis & simulation
   description: Reorganizes volume-based TIFF stacks into timepoint-based stacks.
   language: C++
   technology: TIFF
@@ -42,34 +39,30 @@
   importance: 14
 - title: RSpec
   url: https://github.com/y3nr1ng/rspec
-  category: Scientific software
+  category: Analysis & simulation
   description: A utility for analyzing Raman spectrum composition.
   language: Python
-  technology: Raman spectroscopy
   discipline: Earlier work
   importance: 15
 - title: Microscopy stitching
   url: https://github.com/cbc-group/stitching
-  category: Scientific software
+  category: Analysis & simulation
   description: Image-stitching tools developed in the CBC group.
   language: Python
-  technology: Image stitching
   discipline: Contribution
   importance: 16
 - title: Microscopy segmentation
   url: https://github.com/cbc-group/segmentation
-  category: Scientific software
+  category: Analysis & simulation
   description: Tools used in a microscopy segmentation pipeline.
   language: Python
-  technology: Image segmentation
   discipline: Contribution
   importance: 17
 - title: SLM pattern utilities
   url: https://github.com/cbc-group/pattern
-  category: Scientific software
+  category: Analysis & simulation
   description: Utilities for working with spatial light modulator patterns.
   language: Python
-  technology: Spatial light modulators
   discipline: Contribution
   importance: 18
 - title: MATLAB camera interface
@@ -93,7 +86,7 @@
   category: Instrument control
   description: Motion-control integration using Physik Instrumente GCS2.
   language: Python
-  technology: PI motion controllers
+  technology: PI GCS2
   discipline: Earlier work
   importance: 21
 - title: Arduino Due microscope firmware
@@ -106,10 +99,9 @@
   importance: 22
 - title: FROG reconstruction
   url: https://github.com/y3nr1ng/FROG-LabVIEW
-  category: Scientific software
+  category: Analysis & simulation
   description: Frequency-resolved optical gating pulse-retrieval software.
   language: C / LabVIEW
-  technology: Pulse reconstruction
   discipline: Earlier work
   importance: 23
 - title: Dask on TORQUE
@@ -146,41 +138,37 @@
   importance: 27
 - title: MIPS processor
   url: https://github.com/y3nr1ng/MIPS
-  category: Course projects
-  description: A five-stage pipelined MIPS processor model with an L1 cache.
+  category: Analysis & simulation
+  description: A course project modeling a five-stage pipelined MIPS processor with an L1 cache.
   language: Verilog
-  technology: MIPS
   discipline: Course project
   importance: 28
 - title: Forward and Reverse Design
   url: https://github.com/DSDL2016/FwdRevDesign
-  category: Course projects
+  category: Applications & utilities
   description: An interactive forward/reverse engineering project for a digital-systems design course.
   language: JavaScript
-  technology: Digital systems
   discipline: Team course project
   importance: 29
 - title: DSA final project
   url: https://github.com/sudo-rm-slash/DSA-Final
-  category: Course projects
+  category: Applications & utilities
   description: A basic bank-system implementation for the NTU data-structures course.
   language: C++
-  technology: Data structures
   discipline: Team course project
   importance: 30
 - title: Two-choice task
   url: https://github.com/NTULINE417/two_choice_task
-  category: Research tools
+  category: Applications & utilities
   description: MATLAB code for a two-choice dynamic foraging task.
   language: MATLAB
-  technology: Behavioral experiments
   discipline: Contribution
   importance: 31
 - title: ZarrSharp
   url: https://github.com/chemimage/ZarrSharp
-  category: Scientific software
+  category: Libraries & developer tools
   description: An AI-assisted C# translation of zarr-python, with reference-style interoperability examples.
-  language: C# / .NET
-  technology: Zarr
+  language: C#
+  technology: .NET / Zarr
   discipline: Experimental library
   importance: 5

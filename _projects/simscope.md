@@ -1,6 +1,6 @@
 ---
 layout: page
-category: Scientific software
+category: Analysis & simulation
 title: SimScope
 permalink: /projects/simscope/
 description: Virtual optical benches with explicit physical models and inspectable
@@ -9,7 +9,7 @@ discipline: Numerical simulation
 importance: 3
 featured: true
 language: Python
-technology: Numerical optics
+technology: NumPy
 ---
 
 An optical simulation needs to explain which physical setup was modeled, how light

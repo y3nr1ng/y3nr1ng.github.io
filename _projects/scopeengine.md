@@ -8,8 +8,8 @@ description: Acquisition software connecting microscope workflows with vendor-sp
 discipline: Instrument control
 importance: 1
 featured: true
-language: C# / .NET
-technology: QCL microscopy
+language: C#
+technology: .NET / Avalonia
 publications:
   - title: Designing software solutions for infrared chemical imaging and digital pathology
     label: SPIE 2025 proceedings

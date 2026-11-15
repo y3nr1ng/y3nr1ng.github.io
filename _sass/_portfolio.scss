@@ -113,9 +113,6 @@ button:focus-visible {
   margin: 0.3rem 0 0.6rem;
 }
 .portfolio-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  gap: 4rem;
   padding: 1.5rem 0 2.5rem;
   scroll-margin-top: 1.5rem;
 }
@@ -177,28 +174,7 @@ button:focus-visible {
   max-width: 46rem;
 }
 .intro-summary {
-  max-width: 43rem;
-}
-.intro-experience {
-  padding-top: 0.4rem;
-}
-.portfolio .intro-experience h2 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-}
-.intro-experience > p {
-  color: var(--portfolio-muted);
-  font-size: 0.95rem;
-  line-height: 1.65;
-}
-.intro-experience ul {
-  padding-left: 1.1rem;
-  margin: 0;
-  color: var(--portfolio-muted);
-  font-size: 0.95rem;
-}
-.intro-experience li {
-  margin-bottom: 0.6rem;
+  max-width: 60rem;
 }
 #contact {
   scroll-margin-top: 1.5rem;
@@ -284,10 +260,6 @@ button:focus-visible {
   text-underline-offset: 2px;
 }
 @media (max-width: 900px) {
-  .portfolio-hero {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
   .project-directory {
     grid-template-columns: 1fr;
     gap: 1.5rem;

@@ -11,11 +11,7 @@ description: Software for controlling microscopes, exploring image data, and sim
       <h1 id="intro-title">Yen-Ting Liu</h1>
       {% include profile-links.liquid %}
     </div>
-    <p>I build software for controlling microscopes, exploring image data, and simulating optical systems.</p>
-  </div>
-  <div class="intro-experience">
-    <h2>Background</h2>
-    <p>My background spans computer science and life science, which I studied at National Taiwan University. At Academia Sinica, I worked on light-sheet microscopy acquisition and 3D image processing.</p>
+    <p>My background is in computer science and life science, which I studied at National Taiwan University. My work spans microscope control, image processing, and optical simulation, including earlier work on light-sheet microscopy at Academia Sinica.</p>
   </div>
 </section>
 <section id="projects" class="portfolio-section" aria-labelledby="work-title">
