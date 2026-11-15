@@ -1,4 +1,5 @@
-# Initial repository index; descriptions and grouping can be refined over time.
+# Initial repository index; categories reflect primary function.
+# Importance is a curated display priority, not a repository date.
 - title: AnyCite
   url: https://github.com/y3nr1ng/AnyCite
   category: Applications
@@ -83,7 +84,7 @@
   importance: 18
 - title: MATLAB camera interface
   url: https://github.com/y3nr1ng/libdc1394-matlab
-  category: Instrumentation
+  category: Instrument control
   description: A MATLAB wrapper for the libdc1394 camera library.
   technologies:
     - C++
@@ -93,7 +94,7 @@
   importance: 19
 - title: "Olive: Hamamatsu cameras"
   url: https://github.com/y3nr1ng/olive-camera-dcamapi
-  category: Instrumentation
+  category: Instrument control
   description: Camera integration around Hamamatsu DCAM-API.
   technologies:
     - Python
@@ -102,7 +103,7 @@
   importance: 20
 - title: "Olive: PI motion control"
   url: https://github.com/y3nr1ng/olive-motion-pi
-  category: Instrumentation
+  category: Instrument control
   description: Motion-control integration using Physik Instrumente GCS2.
   technologies:
     - Python
@@ -111,7 +112,7 @@
   importance: 21
 - title: Arduino Due microscope firmware
   url: https://github.com/cbc-group/mm_due
-  category: Instrumentation
+  category: Instrument control
   description: Firmware compatible with the Arduino32Hub adapter, including DAC control for sheet-scan microscopes.
   technologies:
     - C++
@@ -121,12 +122,13 @@
   importance: 22
 - title: FROG reconstruction
   url: https://github.com/y3nr1ng/FROG-LabVIEW
-  category: Instrumentation
+  category: Scientific software
   description: Frequency-resolved optical gating pulse-retrieval software.
   technologies:
     - C
     - LabVIEW
     - Optics
+    - Pulse reconstruction
   discipline: Earlier work
   importance: 23
 - title: Dask on TORQUE
@@ -213,4 +215,4 @@
     - .NET
     - Zarr
   discipline: Experimental library
-  importance: 32
+  importance: 5

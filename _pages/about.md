@@ -13,7 +13,6 @@ description: Scientific software and imaging systems by Yen-Ting Liu.
     </div>
     <p class="hero-summary">Scientific software and imaging systems</p>
     <p>I develop instrument-control software, scientific data viewers, and numerical simulation tools.</p>
-    <p>I am seeking scientific software and imaging-systems engineering roles, and am also interested in general software engineering positions.</p>
 
   </div>
   <div class="intro-experience">

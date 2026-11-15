@@ -1,0 +1,22 @@
+{% if include.publications and include.publications.size > 0 %}
+  {% if include.compact %}
+    <p class="project-publications">
+      Related publication:
+      {% for publication in include.publications %}
+        <a href="{{ publication.url }}" title="{{ publication.title | escape }}">{{ publication.label }}</a>
+        {%- unless forloop.last %}; {% endunless %}
+      {% endfor %}
+    </p>
+  {% else %}
+    <aside class="related-publications" aria-label="Related publications">
+      <h2>Related publication</h2>
+      <ul>
+        {% for publication in include.publications %}
+          <li>
+            <a href="{{ publication.url }}">{{ publication.title }}</a> ({{ publication.label }})
+          </li>
+        {% endfor %}
+      </ul>
+    </aside>
+  {% endif %}
+{% endif %}

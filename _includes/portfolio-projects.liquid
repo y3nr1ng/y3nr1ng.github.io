@@ -1,47 +1,56 @@
 {% assign categories = include.projects | group_by: 'category' %}
+{% assign discovered_names = categories | map: 'name' %}
+{% assign category_names = site.data.portfolio_categories | concat: discovered_names | uniq %}
 <div class="project-directory">
   <nav class="project-category-nav" aria-label="Project categories">
     <p>Categories</p>
     <ul>
-      {% for category in categories %}
-        <li>
-          <a href="#category-{{ category.name | slugify }}">{{ category.name }}</a>
-        </li>
+      {% for category_name in category_names %}
+        {% assign category = categories | where: 'name', category_name | first %}
+        {% if category %}
+          <li>
+            <a href="#category-{{ category.name | slugify }}">{{ category.name }}</a>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </nav>
   <div class="portfolio-projects">
-    {% for category in categories %}
-      <section id="category-{{ category.name | slugify }}" class="project-category" aria-label="{{ category.name }}">
-        {% if include.index %}
-          <h2 class="project-category-title">{{ category.name }}</h2>
-        {% else %}
-          <h3 class="project-category-title">{{ category.name }}</h3>
-        {% endif %}
-        <ul class="project-list">
-          {% for project in category.items %}
-            <li>
-              <div class="project-label">
-                {% if project.url contains '://' %}
-                  {% assign project_link = project.url %}
-                {% else %}
-                  {% assign project_link = project.url | relative_url %}
-                {% endif %}
-                <a class="project-title" href="{{ project_link }}">{{ project.title }}</a>
-                <span class="project-discipline">{{ project.discipline }}</span>
-              </div>
-              <div class="project-summary">
-                <p>{{ project.description }}</p>
-                <ul class="project-tags" aria-label="Project tags">
-                  {% for tag in project.technologies %}
-                    <li>{{ tag }}</li>
-                  {% endfor %}
-                </ul>
-              </div>
-            </li>
-          {% endfor %}
-        </ul>
-      </section>
+    {% for category_name in category_names %}
+      {% assign category = categories | where: 'name', category_name | first %}
+      {% if category %}
+        <section id="category-{{ category.name | slugify }}" class="project-category" aria-label="{{ category.name }}">
+          {% if include.index %}
+            <h2 class="project-category-title">{{ category.name }}</h2>
+          {% else %}
+            <h3 class="project-category-title">{{ category.name }}</h3>
+          {% endif %}
+          <ul class="project-list">
+            {% for project in category.items %}
+              <li>
+                <div class="project-label">
+                  {% if project.url contains '://' %}
+                    {% assign project_link = project.url %}
+                  {% else %}
+                    {% assign project_link = project.url | relative_url %}
+                  {% endif %}
+                  <a class="project-title" href="{{ project_link }}">{{ project.title }}</a>
+                  <span class="project-discipline">{{ project.discipline }}</span>
+                </div>
+                <div class="project-summary">
+                  <p>{{ project.description }}</p>
+                  <ul class="project-tags" aria-label="Project tags">
+                    {% for tag in project.technologies %}
+                      <li>{{ tag }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% include project-publications.liquid publications=project.publications compact=true %}
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
     {% endfor %}
   </div>
 </div>

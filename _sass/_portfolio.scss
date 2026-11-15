@@ -340,3 +340,16 @@ button:focus-visible {
     gap: 0.5rem;
   }
 }
+
+.project-publications {
+  font-size: 0.85rem;
+  margin-top: 0.65rem !important;
+  color: var(--portfolio-muted);
+}
+.related-publications {
+  margin-top: 2rem;
+  max-width: 48rem;
+}
+.related-publications h2 {
+  font-size: 1.25rem;
+}

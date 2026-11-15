@@ -1,6 +1,6 @@
 ---
 layout: page
-category: Instrumentation
+category: Instrument control
 title: ScopeEngine / ciMicroscope
 permalink: /projects/scopeengine/
 description: Acquisition software connecting microscope workflows with vendor-specific
@@ -12,6 +12,10 @@ technologies:
   - C# / .NET
   - gRPC
   - Shared memory
+publications:
+  - title: Designing software solutions for infrared chemical imaging and digital pathology
+    label: SPIE 2025 proceedings
+    url: https://doi.org/10.1117/12.3042353
 ---
 
 Microscope acquisition combines instruments with different APIs, timing behavior,
