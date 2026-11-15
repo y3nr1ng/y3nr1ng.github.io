@@ -8,12 +8,15 @@
 - title: Light-sheet microscopy
   role: Acquisition tools and volumetric processing
   institution: Academia Sinica
-  description: I developed acquisition tools, volumetric image-fusion methods, and processing pipelines for large microscopy datasets.
+  description: I have worked with axial-scan, dual-scan, and lattice light-sheet systems. My contributions include acquisition tools, volumetric image-fusion methods, and processing pipelines for large microscopy datasets.
   projects:
     - title: uToolbox
       url: https://github.com/y3nr1ng/utoolbox
     - title: DeconvLR
       url: https://github.com/y3nr1ng/DeconvLR
+- title: Single-molecule microscopy
+  role: System design and image analysis
+  description: I contributed to single-molecule microscopy system design. My related computational work includes localization processing and geometric analysis of 3D super-resolution datasets.
 - title: Microscopy computing cluster
   role: Cluster setup and processing workflows
   institution: Academia Sinica

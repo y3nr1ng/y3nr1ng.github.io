@@ -3,7 +3,10 @@
     <li>
       <div>
         <h3 class="system-title">{{ system.title | escape }}</h3>
-        <p class="system-meta">{{ system.institution | escape }} · {{ system.role | escape }}</p>
+        <p class="system-meta">
+          {% if system.institution %}{{ system.institution | escape }} · {% endif -%}
+          {{- system.role | escape }}
+        </p>
       </div>
       <div class="project-summary">
         <p>{{ system.description | escape }}</p>
