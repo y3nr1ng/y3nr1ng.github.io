@@ -1,0 +1,17 @@
+<nav id="contact" class="profile-links" aria-label="Profile and contact links">
+  <a href="mailto:{{ site.data.socials.email }}"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>Email</span></a>
+  <a href="https://github.com/{{ site.data.socials.github_username }}"><i class="fa-brands fa-github" aria-hidden="true"></i><span>GitHub</span></a>
+  <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}/"
+    ><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span>LinkedIn</span></a
+  >
+  {% if site.data.socials.research_gate_profile %}
+    <a href="https://www.researchgate.net/profile/{{ site.data.socials.research_gate_profile }}/"
+      ><i class="ai ai-researchgate" aria-hidden="true"></i><span>ResearchGate</span></a
+    >
+  {% endif %}
+  {% if site.data.socials.scholar_userid %}
+    <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}"
+      ><i class="ai ai-google-scholar" aria-hidden="true"></i><span>Scholar</span></a
+    >
+  {% endif %}
+</nav>

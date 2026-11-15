@@ -78,11 +78,30 @@ button:focus-visible {
   font-size: 1.2rem;
   color: var(--portfolio-muted);
 }
-.portfolio-actions {
+.intro-heading {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  align-items: baseline;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.portfolio .intro-heading h1 {
+  margin: 0;
+}
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+.profile-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.profile-links i {
+  font-size: 1rem;
 }
 .portfolio-section {
   border-top: 1px solid var(--portfolio-line);
@@ -101,6 +120,11 @@ button:focus-visible {
 .portfolio .intro-experience h2 {
   font-size: 1.1rem;
   margin-bottom: 1rem;
+}
+.intro-experience > p {
+  color: var(--portfolio-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 .intro-experience ul {
   padding-left: 1.1rem;

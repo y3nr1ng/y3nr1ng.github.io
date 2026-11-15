@@ -7,18 +7,18 @@ description: Scientific software and imaging systems by Yen-Ting Liu.
 
 <section id="about" class="portfolio-hero" aria-labelledby="intro-title">
   <div class="intro-summary">
-    <h1 id="intro-title">Yen-Ting Liu</h1>
+    <div class="intro-heading">
+      <h1 id="intro-title">Yen-Ting Liu</h1>
+      {% include profile-links.liquid %}
+    </div>
     <p class="hero-summary">Scientific software and imaging systems</p>
     <p>I develop instrument-control software, scientific data viewers, and numerical simulation tools.</p>
     <p>I am seeking scientific software and imaging-systems engineering roles, and am also interested in general software engineering positions.</p>
-    <div id="contact" class="portfolio-actions" aria-label="Contact links">
-      <a href="mailto:ytliu2@illinois.edu">Email</a>
-      <a href="https://github.com/y3nr1ng">GitHub</a>
-      <a href="https://www.linkedin.com/in/y3nr1ng/">LinkedIn</a>
-    </div>
+
   </div>
   <div class="intro-experience">
-    <h2>Experience</h2>
+    <h2>Background</h2>
+    <p>My earlier work at Academia Sinica included light-sheet microscopy acquisition and volumetric image processing. I studied Computer Science and Information Engineering and Life Science at National Taiwan University.</p>
     <ul>
       <li>Instrument integration and acquisition — C#/.NET</li>
       <li>Scientific computing — Python</li>
