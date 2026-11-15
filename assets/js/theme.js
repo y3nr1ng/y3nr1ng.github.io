@@ -1,15 +1,14 @@
 // Has to be in the head tag, otherwise a flicker effect will occur.
 
-// Toggle through light, dark, and system theme settings.
+// Start the cycle with the opposite of Auto's current appearance.
+let determineNextThemeSetting = (themeSetting) => {
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  if (themeSetting === "system") return systemTheme === "dark" ? "light" : "dark";
+  return themeSetting === systemTheme ? "system" : systemTheme;
+};
+
 let toggleThemeSetting = () => {
-  let themeSetting = determineThemeSetting();
-  if (themeSetting == "system") {
-    setThemeSetting("light");
-  } else if (themeSetting == "light") {
-    setThemeSetting("dark");
-  } else {
-    setThemeSetting("system");
-  }
+  setThemeSetting(determineNextThemeSetting(determineThemeSetting()));
 };
 
 // Change the theme setting and apply the theme.
@@ -25,15 +24,16 @@ let setThemeSetting = (themeSetting) => {
 // Show the preference, including Auto even when the computed theme changes.
 let syncThemeControls = (themeSetting) => {
   const modes = {
-    system: { name: "Auto", icon: "fa-desktop", next: "Light" },
-    light: { name: "Light", icon: "fa-sun", next: "Dark" },
-    dark: { name: "Dark", icon: "fa-moon", next: "Auto" },
+    system: { name: "Auto", icon: "fa-desktop" },
+    light: { name: "Light", icon: "fa-sun" },
+    dark: { name: "Dark", icon: "fa-moon" },
   };
   const mode = modes[themeSetting];
+  const next = modes[determineNextThemeSetting(themeSetting)].name;
   document.querySelectorAll("[data-theme-cycle]").forEach((button) => {
-    button.setAttribute("aria-label", `${mode.name} theme. Switch to ${mode.next} theme`);
+    button.setAttribute("aria-label", `${mode.name} theme. Switch to ${next} theme`);
     button.querySelector("i").className = `fa-solid ${mode.icon}`;
-    button.querySelector(".profile-tooltip").textContent = `${mode.name} → ${mode.next}`;
+    button.querySelector(".profile-tooltip").textContent = `${mode.name} → ${next}`;
   });
 };
 
@@ -308,7 +308,8 @@ let initTheme = () => {
   });
 
   // Add event listener to the system theme preference change.
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    syncThemeControls(determineThemeSetting());
     applyTheme();
   });
 };

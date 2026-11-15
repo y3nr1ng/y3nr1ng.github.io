@@ -73,30 +73,30 @@ function openPage(storage = new Map(), prefersDark = false) {
   };
 }
 
-test("Auto follows system changes; explicit choices remain stable and survive navigation", () => {
+test("Auto follows system changes and updates the next action; explicit choices survive navigation", () => {
   const storage = new Map();
   const page = openPage(storage, false);
   assert.equal(page.selected(), "system");
   assert.equal(page.theme(), "light");
+  assert.equal(page.tooltip(), "Auto → Dark");
   page.system(true);
   assert.equal(page.theme(), "dark");
   assert.equal(page.selected(), "system");
+  assert.equal(page.tooltip(), "Auto → Light");
   page.cycle();
+  assert.equal(page.selected(), "light");
   assert.equal(page.theme(), "light");
-  page.system(true);
+  page.system(false);
+  assert.equal(page.selected(), "light");
   assert.equal(page.theme(), "light");
-  const nextPage = openPage(storage, true);
+  assert.equal(page.tooltip(), "Light → Auto");
+  const nextPage = openPage(storage, false);
   assert.equal(nextPage.selected(), "light");
-  assert.equal(nextPage.theme(), "light");
-  nextPage.cycle();
-  assert.equal(nextPage.selected(), "dark");
-  nextPage.system(false);
-  assert.equal(nextPage.theme(), "dark");
   nextPage.cycle();
   assert.equal(nextPage.selected(), "system");
-  assert.equal(nextPage.theme(), "light");
   nextPage.system(true);
   assert.equal(nextPage.theme(), "dark");
+  assert.equal(nextPage.tooltip(), "Auto → Light");
 });
 
 test("unrecognized stored preference falls back to Auto", () => {
@@ -105,23 +105,32 @@ test("unrecognized stored preference falls back to Auto", () => {
   assert.equal(page.theme(), "dark");
 });
 
-test("one button cycles repeatedly with accurate labels and no stale transition timers", () => {
-  const page = openPage();
-  const modes = [
-    ["system", "Auto", "Light", "desktop"],
-    ["light", "Light", "Dark", "sun"],
-    ["dark", "Dark", "Auto", "moon"],
-  ];
-  for (let i = 0; i < 9; i++) {
-    const [mode, name, next, icon] = modes[i % 3];
-    assert.equal(page.selected(), mode);
-    assert.equal(page.label(), `${name} theme. Switch to ${next} theme`);
-    assert.equal(page.tooltip(), `${name} → ${next}`);
-    assert.equal(page.icon(), `fa-solid fa-${icon}`);
-    assert.equal(page.pendingTransitions(), 1);
-    assert.equal(page.transitioning(), true);
-    page.cycle();
-  }
-  page.finishTransition();
-  assert.equal(page.transitioning(), false);
-});
+for (const prefersDark of [false, true]) {
+  test(`Auto defaults to ${prefersDark ? "dark" : "light"} and cycles opposite first without stale timers`, () => {
+    const page = openPage(new Map(), prefersDark);
+    const modes = prefersDark
+      ? [
+          ["system", "Auto", "Light", "desktop", "dark"],
+          ["light", "Light", "Dark", "sun", "light"],
+          ["dark", "Dark", "Auto", "moon", "dark"],
+        ]
+      : [
+          ["system", "Auto", "Dark", "desktop", "light"],
+          ["dark", "Dark", "Light", "moon", "dark"],
+          ["light", "Light", "Auto", "sun", "light"],
+        ];
+    for (let i = 0; i < 9; i++) {
+      const [mode, name, next, icon, appearance] = modes[i % 3];
+      assert.equal(page.selected(), mode);
+      assert.equal(page.theme(), appearance);
+      assert.equal(page.label(), `${name} theme. Switch to ${next} theme`);
+      assert.equal(page.tooltip(), `${name} → ${next}`);
+      assert.equal(page.icon(), `fa-solid fa-${icon}`);
+      assert.equal(page.pendingTransitions(), 1);
+      assert.equal(page.transitioning(), true);
+      page.cycle();
+    }
+    page.finishTransition();
+    assert.equal(page.transitioning(), false);
+  });
+}
