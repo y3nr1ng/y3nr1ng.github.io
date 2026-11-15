@@ -2,6 +2,16 @@
   role: Acquisition software and instrument integration
   institution: UIUC
   description: I develop acquisition software for infrared laser-scanning microscopes, coordinating device control, synchronized data collection, and processing during acquisition.
+  publications:
+    - title: Infrared spectroscopic laser scanning confocal microscopy for whole-slide chemical imaging
+      label: Nature Communications, 2023
+      url: https://doi.org/10.1038/s41467-023-40740-w
+    - title: Sensitive Discrete Frequency Mid-Infrared Absorption Spectroscopy Using Digitally Referenced Detection
+      label: Analytical Chemistry, 2024
+      url: https://doi.org/10.1021/acs.analchem.4c00134
+    - title: Designing software solutions for infrared chemical imaging and digital pathology
+      label: SPIE proceedings, 2025
+      url: https://doi.org/10.1117/12.3042353
   projects:
     - title: ScopeEngine / ciMicroscope
       url: /projects/scopeengine/
@@ -9,6 +19,16 @@
   role: Acquisition tools and volumetric processing
   institution: Academia Sinica
   description: I have worked with axial-scan, dual-view, and lattice light-sheet systems. My contributions include acquisition tools, volumetric image-fusion methods, and processing pipelines for large microscopy datasets.
+  publications:
+    - title: Rapid high resolution 3D imaging of expanded biological specimens with lattice light sheet microscopy
+      label: Methods, 2020
+      url: https://doi.org/10.1016/j.ymeth.2019.04.006
+    - title: Two-beam interference lattice lightsheet for structured illumination microscopy
+      label: Journal of Physics D, 2020
+      url: https://doi.org/10.1088/1361-6463/ab50e2
+    - title: Optogenetic manipulation of cell migration with high spatiotemporal resolution using lattice lightsheet microscopy
+      label: Communications Biology, 2022
+      url: https://doi.org/10.1038/s42003-022-03835-6
   projects:
     - title: uToolbox
       url: https://github.com/y3nr1ng/utoolbox
@@ -17,6 +37,13 @@
 - title: Single-molecule microscopy
   role: System design and image analysis
   description: I contributed to single-molecule microscopy system design. My related computational work includes localization processing and geometric analysis of 3D super-resolution datasets.
+  publications:
+    - title: Lightsheet localization microscopy enables fast, large-scale, and three-dimensional super-resolution imaging
+      label: Communications Biology, 2019
+      url: https://doi.org/10.1038/s42003-019-0403-9
+    - title: Rapid single-wavelength lightsheet localization microscopy for clarified tissue
+      label: Nature Communications, 2019
+      url: https://doi.org/10.1038/s41467-019-12715-3
 - title: Microscopy computing cluster
   role: Cluster setup and processing workflows
   institution: Academia Sinica

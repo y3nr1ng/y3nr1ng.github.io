@@ -177,6 +177,26 @@ button:focus-visible {
 .intro-summary p:last-child {
   margin-bottom: 0;
 }
+.background-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.background-list > li {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+.background-dates,
+.background-list p {
+  color: var(--portfolio-muted);
+}
+.background-list p {
+  margin: 0.2rem 0 0;
+}
 #contact {
   scroll-margin-top: 1.5rem;
 }
@@ -310,6 +330,13 @@ button:focus-visible {
   font-size: 0.85rem;
   margin-top: 0.65rem !important;
   color: var(--portfolio-muted);
+}
+.project-publications ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+.project-publications li + li {
+  margin-top: 0.35rem;
 }
 .related-publications {
   margin-top: 2rem;

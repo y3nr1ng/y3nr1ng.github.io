@@ -1,7 +1,23 @@
 {% if include.publications and include.publications.size > 0 %}
-  {% if include.compact %}
+  {% if include.publications.size == 1 %}
+    {% assign publication_heading = 'Related publication' %}
+  {% else %}
+    {% assign publication_heading = 'Related publications' %}
+  {% endif %}
+  {% if include.list %}
+    <div class="project-publications">
+      <p>{{ publication_heading }}:</p>
+      <ul>
+        {% for publication in include.publications %}
+          <li>
+            <a href="{{ publication.url }}">{{ publication.title | escape }}</a> ({{ publication.label | escape }})
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% elsif include.compact %}
     <p class="project-publications">
-      Related publication:
+      {{ publication_heading }}:
       {% for publication in include.publications %}
         <a href="{{ publication.url }}" title="{{ publication.title | escape }}">{{ publication.label }}</a>
         {%- unless forloop.last %}; {% endunless %}
@@ -9,7 +25,7 @@
     </p>
   {% else %}
     <aside class="related-publications" aria-label="Related publications">
-      <h2>Related publication</h2>
+      <h2>{{ publication_heading }}</h2>
       <ul>
         {% for publication in include.publications %}
           <li>

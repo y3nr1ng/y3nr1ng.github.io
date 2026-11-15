@@ -11,8 +11,15 @@ description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems
     {% include profile-links.liquid %}
   </div>
   <div class="intro-summary">
-    <p>I'm a PhD candidate in electrical and computer engineering at the <a href="https://illinois.edu/">University of Illinois Urbana-Champaign</a>. My work focuses on microscopy, from instrument control and acquisition to image processing and analysis.</p>
-    <p>I studied computer science and life science at <a href="https://www.ntu.edu.tw/english/">National Taiwan University</a> and previously worked on light-sheet microscopy at <a href="https://www.sinica.edu.tw/en/">Academia Sinica</a>.</p>
+    <p>I'm a PhD candidate in electrical and computer engineering at <a href="https://illinois.edu/">UIUC</a>, working on microscopy instruments and software for acquisition and image analysis.</p>
+    <ul class="background-list" aria-label="Education and research background">
+      {% for entry in site.data.background %}
+        <li>
+          <span class="background-dates">{{ entry.dates | escape }}</span>
+          <div><a href="{{ entry.url }}">{{ entry.institution | escape }}</a><p>{{ entry.description | escape }}</p></div>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </section>
 <section id="systems" class="portfolio-section" aria-labelledby="systems-title">
