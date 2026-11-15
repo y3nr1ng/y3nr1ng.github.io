@@ -34,13 +34,17 @@
                     {% assign project_link = project.url | relative_url %}
                   {% endif %}
                   <a class="project-title" href="{{ project_link }}">{{ project.title }}</a>
-                  {% if project.language or project.technology %}
+                  {% if project.language or project.technology or project.course_label %}
                     <p class="project-meta">
                       {% if project.language -%}
                         <span class="project-language">{{ project.language | escape }}</span>
                       {%- endif %}
                       {% if project.language and project.technology %} · {% endif %}
                       {% if project.technology %}{{ project.technology | escape }}{% endif %}
+                      {% if project.course_label %}
+                        {% if project.language or project.technology %} · {% endif %}
+                        <span class="project-course">{{ project.course_label | escape }}</span>
+                      {% endif %}
                     </p>
                   {% endif %}
                 </div>

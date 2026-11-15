@@ -142,6 +142,7 @@
   description: A course project modeling a five-stage pipelined MIPS processor with an L1 cache.
   language: Verilog
   discipline: Course project
+  course_label: Course project
   importance: 28
 - title: Forward and Reverse Design
   url: https://github.com/DSDL2016/FwdRevDesign
@@ -149,13 +150,15 @@
   description: An interactive forward/reverse engineering project for a digital-systems design course.
   language: JavaScript
   discipline: Team course project
+  course_label: Team course project
   importance: 29
 - title: DSA final project
   url: https://github.com/sudo-rm-slash/DSA-Final
   category: Applications & utilities
-  description: A basic bank-system implementation for the NTU data-structures course.
+  description: Banking-system simulation built for NTU's data structures course.
   language: C++
   discipline: Team course project
+  course_label: Team course project
   importance: 30
 - title: Two-choice task
   url: https://github.com/NTULINE417/two_choice_task
