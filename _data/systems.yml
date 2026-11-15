@@ -8,7 +8,7 @@
 - title: Light-sheet microscopy
   role: Acquisition tools and volumetric processing
   institution: Academia Sinica
-  description: I have worked with axial-scan, dual-scan, and lattice light-sheet systems. My contributions include acquisition tools, volumetric image-fusion methods, and processing pipelines for large microscopy datasets.
+  description: I have worked with axial-scan, dual-view, and lattice light-sheet systems. My contributions include acquisition tools, volumetric image-fusion methods, and processing pipelines for large microscopy datasets.
   projects:
     - title: uToolbox
       url: https://github.com/y3nr1ng/utoolbox
