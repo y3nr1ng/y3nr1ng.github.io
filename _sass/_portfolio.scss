@@ -36,12 +36,6 @@ body {
   right: max(0.75rem, env(safe-area-inset-right));
   z-index: 100;
   display: flex;
-  gap: 2px;
-  padding: 3px;
-  border: 1px solid var(--portfolio-line);
-  border-radius: 6px;
-  background: var(--global-bg-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 .theme-mode {
   position: relative;
@@ -59,9 +53,10 @@ body {
   font-size: 1.15rem;
 }
 .theme-mode .profile-tooltip {
-  right: 0;
+  top: 50%;
+  right: calc(100% + 0.5rem);
   left: auto;
-  transform: none;
+  transform: translateY(-50%);
 }
 .theme-mode:hover .profile-tooltip,
 .theme-mode:focus-visible .profile-tooltip {
