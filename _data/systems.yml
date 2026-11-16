@@ -59,9 +59,9 @@
     - title: ThunderSTORM cluster scripts
       url: https://github.com/cbc-group/torque-thunderstorm
 - title: Microscopy computing cluster
-  role: Cluster setup and data management
+  role: Cluster services and data management
   institution: Academia Sinica
-  description: A small lab cluster for volumetric light-sheet datasets. We moved most preprocessing there and used it for dataset storage, processing, and bookkeeping.
+  description: Adapted an ACQUIFER system as the starting point for the lab's computing services and management. We moved most light-sheet preprocessing to the small lab cluster and used it for dataset storage, processing, and bookkeeping.
 - title: Optical camera communication
   role: Protocol design and specification
   institution: NTU · 2015–2016
