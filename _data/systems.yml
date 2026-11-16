@@ -61,3 +61,10 @@
       url: https://github.com/cbc-group/pbs
     - title: ThunderSTORM cluster scripts
       url: https://github.com/cbc-group/torque-thunderstorm
+- title: Department network infrastructure
+  role: Network planning and administration (221)
+  institution: NTU CSIE
+  description: I managed day-to-day network operations and planned network infrastructure as an undergraduate member of NTU CSIE's 221 network administration division.
+  links:
+    - title: Network administration team
+      url: https://sites.google.com/a/csie.ntu.edu.tw/ta221/
