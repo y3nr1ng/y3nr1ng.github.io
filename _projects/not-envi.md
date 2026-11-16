@@ -10,8 +10,7 @@ importance: 2
 featured: true
 language: JavaScript
 technology: C / WebAssembly
-highlight:
-  contribution: I develop a browser-based hyperspectral viewer with linked image and spectrum analysis. A C/WebAssembly core manages a bounded data cache so the whole input need not stay in memory.
+resource:
   label: Open the viewer
   url: https://chemimage.github.io/not-envi/
 ---

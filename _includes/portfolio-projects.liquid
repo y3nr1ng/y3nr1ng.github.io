@@ -50,6 +50,16 @@
                 </div>
                 <div class="project-summary">
                   <p>{{ project.description }}</p>
+                  {% if project.resource %}
+                    {% if project.resource.url contains '://' %}
+                      {% assign resource_link = project.resource.url %}
+                    {% else %}
+                      {% assign resource_link = project.resource.url | relative_url %}
+                    {% endif %}
+                    <p class="project-resource">
+                      <a href="{{ resource_link }}">{{ project.resource.label | escape }}</a>
+                    </p>
+                  {% endif %}
                   {% include project-publications.liquid publications=project.publications compact=true %}
                 </div>
               </li>

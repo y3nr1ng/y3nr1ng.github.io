@@ -10,8 +10,7 @@ importance: 3
 featured: true
 language: Python
 technology: NumPy
-highlight:
-  contribution: I develop a Python toolkit for virtual optical benches, separating physical configuration from numerical sampling and recording ray paths, fields, and detector measurements for inspection.
+resource:
   label: Reference-comparison example
   url: /projects/simscope/#reference-comparison
 ---
