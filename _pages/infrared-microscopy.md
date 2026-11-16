@@ -10,7 +10,7 @@ adding stains or fluorescent labels. A laser-scanning microscope records these
 measurements across a specimen, combining spatial information with infrared
 spectral contrast.
 
-I work on these instruments in the
+These instruments are developed in the
 [Chemical Imaging and Structures Laboratory (Bhargava Lab)](https://chemimage.illinois.edu/)
 at UIUC.
 
@@ -19,21 +19,15 @@ positioning hardware, detectors, and synchronized data acquisition. Optical
 alignment, electrical interfaces, firmware, and control software all contribute
 to making those measurements possible.
 
-## My contributions
+## My work
 
-My work spans software and the physical instrument:
-
-- **Control software and firmware — my primary role.** I develop the software
-  and firmware used to control microscope hardware and coordinate acquisition.
-- **Electrical design — my secondary role.** I contribute to electrical design
-  and integration of instrument hardware.
-- **Building and maintaining the instruments.** My hands-on work includes building,
-  aligning, integrating, and maintaining the microscopes.
+My main work is control software and firmware. I also contribute to electrical
+design and to building, aligning, integrating, and maintaining the instruments.
 
 ## Acquisition software
 
-I develop ScopeEngine, an acquisition framework, and ciMicroscope, a desktop
-application for infrared laser-scanning microscopy. The software coordinates
+The control software includes ScopeEngine, an acquisition framework, and
+ciMicroscope, a desktop application for infrared laser-scanning microscopy. It coordinates
 device control, acquisition workflows, and processing of the acquired data.
 
 The [ScopeEngine / ciMicroscope project page]({{ '/projects/scopeengine/' | relative_url }})

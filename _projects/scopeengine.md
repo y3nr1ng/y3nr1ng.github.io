@@ -20,17 +20,17 @@ publications:
     url: https://doi.org/10.1117/12.3042353
 ---
 
-Microscope acquisition combines instruments with different APIs, timing behavior,
-and failure modes. The software has to coordinate them while keeping acquisition
-logic, vendor integration, data handling, and the user interface understandable.
+Microscope acquisition involves devices with different APIs, timing behavior,
+and failure modes.
 
-I develop ScopeEngine, an acquisition framework, and ciMicroscope, a desktop
-application for a QCL-based laser-scanning microscope. The framework separates
+ScopeEngine provides the acquisition framework, while ciMicroscope is a desktop
+application for a QCL-based laser-scanning microscope. I work on both in the
+Bhargava Lab. The framework separates
 requested work from acquisition procedures and the instrument capabilities used
 to execute them. This gives hardware-specific behavior a defined place without
 putting every vendor API into the application workflow.
 
-One important boundary is the driver host. Vendor drivers run in separate processes,
+Vendor drivers run in separate processes,
 with control messages over named-pipe gRPC and large acquired data transferred
 through shared memory. This is intended to isolate vendor SDK dependencies and
 failures from the application process. Protocol and resource-lifecycle checks are
@@ -39,8 +39,7 @@ invalid readers without leaving active read sessions or buffer leases.
 
 Software verification and physical-instrument validation are distinct. Simulated
 tests exercise software boundaries; connected-instrument tests depend on the
-specific hardware and setup. A software test result alone does not validate an
-optical acquisition.
+specific hardware and setup.
 
 The current framework source is private. The
 [earlier public microscopy software release](https://github.com/chemimage/Cisl.Qclm.Public)

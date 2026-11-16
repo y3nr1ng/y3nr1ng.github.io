@@ -11,7 +11,7 @@ description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems
     {% include profile-links.liquid %}
   </div>
   <div class="intro-summary">
-    <p>I'm a PhD candidate in electrical and computer engineering at <a href="https://illinois.edu/">UIUC</a> in the <a href="https://chemimage.illinois.edu/">Chemical Imaging and Structures Laboratory (Bhargava Lab)</a>. My work focuses on microscopy instruments and software for acquisition and image analysis.</p>
+    <p>I'm a PhD candidate in electrical and computer engineering at <a href="https://illinois.edu/">UIUC</a> in the <a href="https://chemimage.illinois.edu/">Chemical Imaging and Structures Laboratory (Bhargava Lab)</a>. I work on microscopy instruments and software for acquisition and image analysis.</p>
     <ul class="background-list" aria-label="Education and research background">
       {% for entry in site.data.background %}
         <li>

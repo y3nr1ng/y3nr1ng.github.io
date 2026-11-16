@@ -2,7 +2,7 @@
   url: /systems/infrared-microscopy/
   role: Control software and firmware
   institution: UIUC · Bhargava Lab
-  description: My primary work is control software and firmware for infrared laser-scanning microscopes. I also contribute to electrical design and build, align, integrate, and maintain the instruments.
+  description: Laser-scanning microscopes that form chemical images from infrared absorption. The instruments combine laser control, scanning optics, positioning hardware, detectors, and synchronized acquisition.
   publications:
     - title: Infrared spectroscopic laser scanning confocal microscopy for whole-slide chemical imaging
       label: Nature Communications, 2023
@@ -22,7 +22,7 @@
 - title: Light-sheet microscopy
   role: Acquisition tools and volumetric processing
   institution: Academia Sinica
-  description: I have worked with axial-scan, dual-view, and lattice light-sheet systems. My contributions include acquisition tools, volumetric image-fusion methods, and processing pipelines for large microscopy datasets.
+  description: Axial-scan, dual-view, and lattice light-sheet systems for volumetric microscopy. Related work includes acquisition tools, image fusion, and preprocessing of large image stacks.
   publications:
     - title: Rapid high resolution 3D imaging of expanded biological specimens with lattice light sheet microscopy
       label: Methods, 2020
@@ -43,7 +43,7 @@
       url: https://github.com/y3nr1ng/DeconvLR
 - title: Single-molecule microscopy
   role: System design and image analysis
-  description: I contributed to single-molecule microscopy system design, localization processing, and geometric analysis of 3D super-resolution datasets. I also developed TORQUE-based processing workflows for single-molecule localization microscopy (SMLM).
+  description: Super-resolution imaging by locating individual fluorescent molecules. Related work includes system design, localization processing, 3D geometric analysis, and TORQUE-based workflows for single-molecule localization microscopy (SMLM).
   publications:
     - title: Lightsheet localization microscopy enables fast, large-scale, and three-dimensional super-resolution imaging
       label: Communications Biology, 2019
@@ -61,11 +61,11 @@
 - title: Microscopy computing cluster
   role: Cluster setup and data management
   institution: Academia Sinica
-  description: I established a small lab-hosted cluster for volumetric light-sheet datasets. To meet their storage and computation needs, we moved most preprocessing onto the cluster and managed dataset processing and bookkeeping there.
+  description: A small lab cluster for volumetric light-sheet datasets. We moved most preprocessing there and used it for dataset storage, processing, and bookkeeping.
 - title: Department network infrastructure
   role: Team lead, network administration (221)
   institution: NTU CSIE
-  description: I led NTU CSIE's 221 network administration team as an undergraduate, managing day-to-day network operations and planning network infrastructure.
+  description: Undergraduate work with NTU CSIE's 221 network administration team, covering day-to-day operations and network infrastructure planning.
   links:
     - title: Network administration team
       url: https://sites.google.com/a/csie.ntu.edu.tw/ta221/
