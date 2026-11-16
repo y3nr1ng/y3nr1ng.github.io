@@ -27,26 +27,29 @@
           <ul class="project-list">
             {% for project in category.items %}
               <li>
-                <div class="project-label">
-                  {% if project.url contains '://' %}
-                    {% assign project_link = project.url %}
-                  {% else %}
-                    {% assign project_link = project.url | relative_url %}
-                  {% endif %}
-                  <a class="project-title" href="{{ project_link }}">{{ project.title }}</a>
-                  {% if project.language or project.technology or project.course_label %}
-                    <p class="project-meta">
-                      {% if project.language -%}
-                        <span class="project-language">{{ project.language | escape }}</span>
-                      {%- endif %}
-                      {% if project.language and project.technology %} · {% endif %}
-                      {% if project.technology %}{{ project.technology | escape }}{% endif %}
-                      {% if project.course_label %}
-                        {% if project.language or project.technology %} · {% endif %}
-                        <span class="project-course">{{ project.course_label | escape }}</span>
-                      {% endif %}
-                    </p>
-                  {% endif %}
+                <div class="project-label{% if project.thumbnail %} project-label-with-thumbnail{% endif %}">
+                  {% include portfolio-thumbnail.liquid thumbnail=project.thumbnail %}
+                  <div>
+                    {% if project.url contains '://' %}
+                      {% assign project_link = project.url %}
+                    {% else %}
+                      {% assign project_link = project.url | relative_url %}
+                    {% endif %}
+                    <a class="project-title" href="{{ project_link }}">{{ project.title }}</a>
+                    {% if project.language or project.technology or project.course_label %}
+                      <p class="project-meta">
+                        {% if project.language -%}
+                          <span class="project-language">{{ project.language | escape }}</span>
+                        {%- endif %}
+                        {% if project.language and project.technology %} · {% endif %}
+                        {% if project.technology %}{{ project.technology | escape }}{% endif %}
+                        {% if project.course_label %}
+                          {% if project.language or project.technology %} · {% endif %}
+                          <span class="project-course">{{ project.course_label | escape }}</span>
+                        {% endif %}
+                      </p>
+                    {% endif %}
+                  </div>
                 </div>
                 <div class="project-summary">
                   <p>{{ project.description }}</p>

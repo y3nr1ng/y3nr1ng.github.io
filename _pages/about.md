@@ -26,6 +26,10 @@ description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems
     </ul>
   </div>
 </section>
+<nav class="portfolio-section-nav" aria-label="Portfolio sections">
+  <a href="#systems">Systems</a>
+  <a href="#projects">Software</a>
+</nav>
 <section id="systems" class="portfolio-section" aria-labelledby="systems-title">
   <h2 id="systems-title">Systems</h2>
   {% include portfolio-systems.liquid %}

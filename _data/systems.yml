@@ -1,4 +1,8 @@
 - title: Infrared laser-scanning microscopy
+  thumbnail:
+    src: /assets/img/portfolio/infrared-concept.webp
+    alt: Concept illustration of a microscope optical bench, lenses, and sample stage
+    caption: Concept illustration
   url: /systems/infrared-microscopy/
   role: Control software and firmware
   institution: UIUC · Bhargava Lab
@@ -20,6 +24,10 @@
     - title: ScopeEngine / ciMicroscope
       url: /projects/scopeengine/
 - title: Light-sheet microscopy
+  thumbnail:
+    src: /assets/img/portfolio/lightsheet-concept.webp
+    alt: Concept illustration of light-sheet illumination and a stack of image planes
+    caption: Concept illustration
   role: Acquisition tools and volumetric processing
   institution: Academia Sinica
   description: Axial-scan, dual-view, and lattice light-sheet systems for volumetric microscopy. Related work includes acquisition tools, image fusion, and preprocessing of large image stacks.
@@ -59,6 +67,10 @@
     - title: ThunderSTORM cluster scripts
       url: https://github.com/cbc-group/torque-thunderstorm
 - title: Microscopy computing cluster
+  thumbnail:
+    src: /assets/img/portfolio/cluster-concept.webp
+    alt: Concept illustration of lab servers and volumetric image data
+    caption: Concept illustration
   role: Cluster services and data management
   institution: Academia Sinica
   description: Adapted an ACQUIFER system as the starting point for the lab's computing services and management. We moved most light-sheet preprocessing to the small lab cluster and used it for dataset storage, processing, and bookkeeping.

@@ -1,18 +1,21 @@
 <ul class="project-list system-list">
   {% for system in site.data.systems %}
     <li>
-      <div>
-        <h3 class="system-title">
-          {% if system.url %}
-            <a href="{{ system.url | relative_url }}">{{ system.title | escape }}</a>
-          {% else %}
-            {{ system.title | escape }}
-          {% endif %}
-        </h3>
-        <p class="system-meta">
-          {% if system.institution %}{{ system.institution | escape }} · {% endif -%}
-          {{- system.role | escape }}
-        </p>
+      <div class="system-label{% if system.thumbnail %} project-label-with-thumbnail{% endif %}">
+        {% include portfolio-thumbnail.liquid thumbnail=system.thumbnail %}
+        <div>
+          <h3 class="system-title">
+            {% if system.url %}
+              <a href="{{ system.url | relative_url }}">{{ system.title | escape }}</a>
+            {% else %}
+              {{ system.title | escape }}
+            {% endif %}
+          </h3>
+          <p class="system-meta">
+            {% if system.institution %}{{ system.institution | escape }} · {% endif -%}
+            {{- system.role | escape }}
+          </p>
+        </div>
       </div>
       <div class="project-summary">
         <p>{{ system.description | escape }}</p>

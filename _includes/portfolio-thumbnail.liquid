@@ -1,0 +1,15 @@
+{% if include.thumbnail %}
+  <figure class="portfolio-thumbnail">
+    <img
+      src="{{ include.thumbnail.src | relative_url }}"
+      alt="{{ include.thumbnail.alt | escape }}"
+      width="112"
+      height="112"
+      loading="lazy"
+      decoding="async"
+    >
+    {% if include.thumbnail.caption %}
+      <figcaption>{{ include.thumbnail.caption | escape }}</figcaption>
+    {% endif %}
+  </figure>
+{% endif %}
