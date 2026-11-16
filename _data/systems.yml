@@ -5,12 +5,15 @@
   publications:
     - title: Infrared spectroscopic laser scanning confocal microscopy for whole-slide chemical imaging
       label: Nature Communications, 2023
+      date: "2023-08-25"
       url: https://doi.org/10.1038/s41467-023-40740-w
     - title: Sensitive Discrete Frequency Mid-Infrared Absorption Spectroscopy Using Digitally Referenced Detection
       label: Analytical Chemistry, 2024
+      date: "2024-06-04"
       url: https://doi.org/10.1021/acs.analchem.4c00134
     - title: Designing software solutions for infrared chemical imaging and digital pathology
       label: SPIE proceedings, 2025
+      date: "2025-03"
       url: https://doi.org/10.1117/12.3042353
   projects:
     - title: ScopeEngine / ciMicroscope
@@ -22,12 +25,15 @@
   publications:
     - title: Rapid high resolution 3D imaging of expanded biological specimens with lattice light sheet microscopy
       label: Methods, 2020
+      date: "2020-03-01"
       url: https://doi.org/10.1016/j.ymeth.2019.04.006
     - title: Two-beam interference lattice lightsheet for structured illumination microscopy
       label: Journal of Physics D, 2020
+      date: "2020-01-23"
       url: https://doi.org/10.1088/1361-6463/ab50e2
     - title: Optogenetic manipulation of cell migration with high spatiotemporal resolution using lattice lightsheet microscopy
       label: Communications Biology, 2022
+      date: "2022-08-26"
       url: https://doi.org/10.1038/s42003-022-03835-6
   projects:
     - title: uToolbox
@@ -40,9 +46,11 @@
   publications:
     - title: Lightsheet localization microscopy enables fast, large-scale, and three-dimensional super-resolution imaging
       label: Communications Biology, 2019
+      date: "2019-05-09"
       url: https://doi.org/10.1038/s42003-019-0403-9
     - title: Rapid single-wavelength lightsheet localization microscopy for clarified tissue
       label: Nature Communications, 2019
+      date: "2019-10-18"
       url: https://doi.org/10.1038/s41467-019-12715-3
 - title: Microscopy computing cluster
   role: Cluster setup and processing workflows

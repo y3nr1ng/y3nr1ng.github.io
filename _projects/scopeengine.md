@@ -17,6 +17,7 @@ highlight:
 publications:
   - title: Designing software solutions for infrared chemical imaging and digital pathology
     label: SPIE 2025 proceedings
+    date: "2025-03"
     url: https://doi.org/10.1117/12.3042353
 ---
 
