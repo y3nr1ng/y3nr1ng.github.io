@@ -1,7 +1,7 @@
 - title: Infrared laser-scanning microscopy
   thumbnail:
     src: /assets/img/portfolio/infrared-concept.webp
-    alt: Concept illustration of a microscope optical bench, lenses, and sample stage
+    alt: Draft concept illustration of a microscope optical bench, lenses, and sample stage
     caption: Concept illustration
   url: /systems/infrared-microscopy/
   role: Control software and firmware
@@ -26,7 +26,7 @@
 - title: Light-sheet microscopy
   thumbnail:
     src: /assets/img/portfolio/lightsheet-concept.webp
-    alt: Concept illustration of light-sheet illumination and a stack of image planes
+    alt: Draft concept illustration of light-sheet illumination and a stack of image planes
     caption: Concept illustration
   role: Acquisition tools and volumetric processing
   institution: Academia Sinica
@@ -69,7 +69,7 @@
 - title: Microscopy computing cluster
   thumbnail:
     src: /assets/img/portfolio/cluster-concept.webp
-    alt: Concept illustration of lab servers and volumetric image data
+    alt: Draft concept illustration of lab servers and volumetric image data
     caption: Concept illustration
   role: Cluster services and data management
   institution: Academia Sinica
