@@ -367,12 +367,6 @@ button:focus-visible {
     grid-template-columns: minmax(0, 1fr);
   }
 }
-@media (max-width: 480px) {
-  .system-body-with-thumbnail {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
-  }
-}
 .system-projects {
   font-size: 0.85rem;
   color: var(--portfolio-muted);
@@ -426,14 +420,82 @@ button:focus-visible {
 }
 @media (max-width: 600px) {
   .portfolio-hero {
-    padding: 1rem 0 2rem;
+    gap: 1rem;
+    padding: 0.75rem 0 1.5rem;
+  }
+  .background-list {
+    margin-top: 1.1rem;
+  }
+  .background-list > li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.15rem;
+  }
+  .background-dates {
+    font-size: 0.85rem;
   }
   .portfolio-section {
-    padding: 2rem 0;
+    padding: 1.75rem 0;
+  }
+  .portfolio-section-heading {
+    gap: 0.25rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .portfolio-section-switch {
+    gap: 1rem;
+  }
+  .portfolio .portfolio-section-switch a,
+  .project-category-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.4rem 0;
+  }
+  .project-category-nav ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.2rem 1rem;
+  }
+  .project-category-nav a {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .system-list {
+    gap: 1.5rem;
+  }
+  .system-list > li {
+    padding-top: 1.1rem;
+  }
+  .system-heading {
+    margin-bottom: 0.75rem;
+  }
+  .system-body-with-thumbnail {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 1rem;
+  }
+  .system-body .portfolio-thumbnail,
+  .system-body .portfolio-thumbnail img {
+    width: 112px;
+  }
+  .system-body .portfolio-thumbnail img {
+    height: 112px;
+  }
+  .system-related {
+    margin-top: 0.75rem;
+  }
+  .system-related summary {
+    min-height: 44px;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
   }
   .project-list > li {
     grid-template-columns: 1fr;
     gap: 0.5rem;
+  }
+}
+@media (max-width: 380px) {
+  .system-body-with-thumbnail {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
   }
 }
 
