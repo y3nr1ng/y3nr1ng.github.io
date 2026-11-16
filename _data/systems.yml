@@ -43,7 +43,7 @@
       url: https://github.com/y3nr1ng/DeconvLR
 - title: Single-molecule microscopy
   role: System design and image analysis
-  description: I contributed to single-molecule microscopy system design. My related computational work includes localization processing and geometric analysis of 3D super-resolution datasets.
+  description: I contributed to single-molecule microscopy system design, localization processing, and geometric analysis of 3D super-resolution datasets. I also developed TORQUE-based processing workflows for single-molecule localization microscopy (SMLM).
   publications:
     - title: Lightsheet localization microscopy enables fast, large-scale, and three-dimensional super-resolution imaging
       label: Communications Biology, 2019
@@ -53,15 +53,15 @@
       label: Nature Communications, 2019
       date: "2019-10-18"
       url: https://doi.org/10.1038/s41467-019-12715-3
-- title: Microscopy computing cluster
-  role: Cluster setup and processing workflows
-  institution: Academia Sinica
-  description: I established a multi-server cluster for large microscopy datasets, supporting distributed image processing and storage.
   projects:
     - title: Dask on TORQUE
       url: https://github.com/cbc-group/pbs
     - title: ThunderSTORM cluster scripts
       url: https://github.com/cbc-group/torque-thunderstorm
+- title: Microscopy computing cluster
+  role: Cluster setup and data management
+  institution: Academia Sinica
+  description: I established a small lab-hosted cluster for volumetric light-sheet datasets. To meet their storage and computation needs, we moved most preprocessing onto the cluster and managed dataset processing and bookkeeping there.
 - title: Department network infrastructure
   role: Team lead, network administration (221)
   institution: NTU CSIE

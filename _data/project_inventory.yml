@@ -107,7 +107,7 @@
 - title: Dask on TORQUE
   url: https://github.com/cbc-group/pbs
   category: Infrastructure
-  description: Adapted Pangeo-based scripts for launching Dask environments on a TORQUE cluster.
+  description: Adapted Pangeo-based scripts for launching Dask environments on a TORQUE cluster, used in single-molecule localization microscopy workflows.
   language: Shell
   technology: Dask / TORQUE
   discipline: Contribution
@@ -115,7 +115,7 @@
 - title: ThunderSTORM cluster scripts
   url: https://github.com/cbc-group/torque-thunderstorm
   category: Infrastructure
-  description: Scripts for running ThunderSTORM analysis on a TORQUE cluster.
+  description: Scripts for running single-molecule localization analysis with ThunderSTORM on a TORQUE cluster.
   language: Python
   technology: ThunderSTORM / TORQUE
   discipline: Contribution
