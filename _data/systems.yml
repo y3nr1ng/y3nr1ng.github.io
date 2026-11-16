@@ -62,6 +62,17 @@
   role: Cluster setup and data management
   institution: Academia Sinica
   description: A small lab cluster for volumetric light-sheet datasets. We moved most preprocessing there and used it for dataset storage, processing, and bookkeeping.
+- title: Optical camera communication
+  role: Protocol design and specification
+  institution: NTU · 2015–2016
+  description: Light-to-camera communication using rolling-shutter frequency-shift keying (RS-FSK). I co-authored NTU's RS-FSK specification submission to IEEE 802.15.7r1. RS-FSK was subsequently included as a PHY V mode in IEEE 802.15.7-2018.
+  links:
+    - title: IEEE technical contribution
+      url: https://mentor.ieee.org/802.15/dcn/16/15-16-0189-01-007a-rolling-shutter-v-frequency-shift-keying-input-for-802-15-7r1-draft-d0.pdf
+    - title: Published standard
+      url: https://standards.ieee.org/ieee/802.15.7/6820/
+    - title: RS-FSK in the standard
+      url: https://doi.org/10.1109/MCOM.002.2300289
 - title: Department network infrastructure
   role: Team lead, network administration (221)
   institution: NTU CSIE
