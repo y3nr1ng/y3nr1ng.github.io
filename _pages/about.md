@@ -26,9 +26,22 @@ description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems
     </ul>
   </div>
 </section>
-<nav class="portfolio-section-nav" aria-label="Portfolio sections">
-  <a href="#systems">Systems</a>
-  <a href="#projects">Software</a>
+{% assign projects = site.projects | concat: site.data.project_inventory | sort: 'importance' %}
+{% assign jump_categories = projects | group_by: 'category' %}
+{% assign jump_discovered = jump_categories | map: 'name' %}
+{% assign jump_names = site.data.portfolio_categories | concat: jump_discovered | uniq %}
+<nav class="portfolio-section-nav" aria-label="Jump to portfolio sections">
+  <span class="portfolio-jump-label">Jump to</span>
+  <ul>
+    <li><a href="#systems">Systems</a></li>
+    <li><a href="#projects">Software</a></li>
+    {% for category_name in jump_names %}
+      {% assign category = jump_categories | where: 'name', category_name | first %}
+      {% if category %}
+        <li><a href="#category-{{ category_name | slugify }}">{{ category_name | escape }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 </nav>
 <section id="systems" class="portfolio-section" aria-labelledby="systems-title">
   <h2 id="systems-title">Systems</h2>
@@ -36,6 +49,5 @@ description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems
 </section>
 <section id="projects" class="portfolio-section" aria-labelledby="work-title">
   <h2 id="work-title">Software</h2>
-  {% assign projects = site.projects | concat: site.data.project_inventory | sort: 'importance' %}
   {% include portfolio-projects.liquid projects=projects %}
 </section>
