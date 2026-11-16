@@ -16,7 +16,11 @@ description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems
       {% for entry in site.data.background %}
         <li>
           <span class="background-dates">{{ entry.dates | escape }}</span>
-          <div><a href="{{ entry.url }}">{{ entry.institution | escape }}</a><p>{{ entry.description | escape }}</p></div>
+          <div>
+            <a href="{{ entry.url }}">{{ entry.institution | escape }}</a>
+            <p>{{ entry.description | escape }}</p>
+            {% if entry.expected_graduation %}<p>Expected graduation: {{ entry.expected_graduation | escape }}</p>{% endif %}
+          </div>
         </li>
       {% endfor %}
     </ul>
