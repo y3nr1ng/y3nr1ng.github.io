@@ -2,7 +2,13 @@
   {% for system in site.data.systems %}
     <li>
       <div>
-        <h3 class="system-title">{{ system.title | escape }}</h3>
+        <h3 class="system-title">
+          {% if system.url %}
+            <a href="{{ system.url | relative_url }}">{{ system.title | escape }}</a>
+          {% else %}
+            {{ system.title | escape }}
+          {% endif %}
+        </h3>
         <p class="system-meta">
           {% if system.institution %}{{ system.institution | escape }} · {% endif -%}
           {{- system.role | escape }}

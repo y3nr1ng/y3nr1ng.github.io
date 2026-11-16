@@ -27,7 +27,7 @@ class Page(HTMLParser):
 def check(destination):
     root = Path(destination).resolve()
     routes = ["", "projects", "projects/scopeengine", "projects/not-envi",
-              "projects/simscope", "projects/video-editor"]
+              "projects/simscope", "projects/video-editor", "systems/infrared-microscopy"]
     pages = {}
     for route in routes:
         path = root / route / "index.html"
@@ -47,7 +47,7 @@ def check(destination):
     homepage_links = {urlsplit(link).path for link in pages[root / "index.html"].links}
     for route in routes[2:]:
         if "/" + route + "/" not in homepage_links:
-            raise ValueError(f"Project missing from entrance page: {route}")
+            raise ValueError(f"Detail page missing from entrance page: {route}")
 
     for path, page in pages.items():
         for href in page.links:

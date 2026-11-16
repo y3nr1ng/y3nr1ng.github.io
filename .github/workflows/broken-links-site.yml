@@ -33,4 +33,4 @@ jobs:
           lycheeVersion: v0.24.2
           fail: true
           failIfEmpty: true
-          args: --offline --root-dir "${{ github.workspace }}/_site" --verbose --no-progress '_site/*.html' '_site/projects/**/*.html'
+          args: --offline --root-dir "${{ github.workspace }}/_site" --verbose --no-progress '_site/*.html' '_site/projects/**/*.html' '_site/systems/**/*.html'

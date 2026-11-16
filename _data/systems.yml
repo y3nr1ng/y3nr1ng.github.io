@@ -1,7 +1,8 @@
 - title: Infrared laser-scanning microscopy
-  role: Acquisition software and instrument integration
+  url: /systems/infrared-microscopy/
+  role: Control software and firmware
   institution: UIUC
-  description: I develop acquisition software for infrared laser-scanning microscopes, coordinating device control, synchronized data collection, and processing during acquisition.
+  description: My primary work is control software and firmware for infrared laser-scanning microscopes. I also contribute to electrical design and build, align, integrate, and maintain the instruments.
   publications:
     - title: Infrared spectroscopic laser scanning confocal microscopy for whole-slide chemical imaging
       label: Nature Communications, 2023
