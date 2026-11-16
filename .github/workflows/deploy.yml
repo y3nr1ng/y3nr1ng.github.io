@@ -104,7 +104,8 @@ jobs:
           purgecss -c purgecss.config.js
       - name: Check portfolio output
         run: |
-          node --test bin/theme.test.cjs
+          npm ci
+          SITE_DIR=_site node --test bin/*.test.cjs
           python bin/check-site.py _site
       - name: Save built site for link checks
         if: github.event_name != 'pull_request'

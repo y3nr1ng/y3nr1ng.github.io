@@ -1,0 +1,17 @@
+<dialog
+  class="detail-panel"
+  hidden
+  data-detail-panel
+  data-detail-roots="{{ '/projects/' | relative_url }} {{ '/systems/' | relative_url }}"
+  aria-labelledby="detail-panel-title"
+>
+  <h2 id="detail-panel-title" class="sr-only">Project details</h2>
+  <div class="detail-panel-toolbar">
+    <a data-detail-full-page href="{{ '/projects/' | relative_url }}">Open full page</a>
+    <button class="detail-panel-close" data-detail-close type="button" aria-label="Close details" autofocus>
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="detail-panel-content" data-detail-content></div>
+</dialog>
+<script type="module" src="{{ '/assets/js/detail-panel.js' | relative_url | bust_file_cache }}"></script>

@@ -43,6 +43,9 @@ def check(destination):
             if placeholder in source:
                 raise ValueError(f"Starter content in {path}: {placeholder}")
         pages[path] = page
+        if route in ["", "projects"]:
+            if source.count("data-detail-panel") != 1 or "detail-panel.js" not in source:
+                raise ValueError(f"Detail panel enhancement missing: {path}")
 
     homepage_links = {urlsplit(link).path for link in pages[root / "index.html"].links}
     for route in routes[2:]:
@@ -70,6 +73,10 @@ def check(destination):
     css = root / "assets/css/main.css"
     if not css.is_file() or ".portfolio-hero" not in css.read_text(encoding="utf-8"):
         raise ValueError("Portfolio stylesheet missing from generated output")
+    if ".detail-panel::backdrop" not in css.read_text(encoding="utf-8"):
+        raise ValueError("Detail panel styling missing after CSS purging")
+    if not (root / "assets/js/detail-panel.js").is_file():
+        raise ValueError("Detail panel script missing from generated output")
     for relative in ["AGENTS.md", "AGENTS.html", ".agents", "cv", "publications", "blog", "projects/1_project"]:
         if (root / relative).exists():
             raise ValueError(f"Unexpected private or sample output: {relative}")
