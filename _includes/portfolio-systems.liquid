@@ -1,7 +1,7 @@
-<ul class="project-list system-list">
+<ul class="system-list">
   {% for system in site.data.systems %}
     <li>
-      <div class="system-label{% if system.thumbnail %} project-label-with-thumbnail{% endif %}">
+      <div class="system-heading">
         <div>
           <h3 class="system-title">
             {% if system.url %}
@@ -15,34 +15,41 @@
             {{- system.role | escape }}
           </p>
         </div>
+      </div>
+      <div class="system-body{% if system.thumbnail %} system-body-with-thumbnail{% endif %}">
         {% include portfolio-thumbnail.liquid thumbnail=system.thumbnail %}
+        <div class="project-summary">
+          <p>{{ system.description | escape }}</p>
+        </div>
       </div>
-      <div class="project-summary">
-        <p>{{ system.description | escape }}</p>
-        {% if system.projects %}
-          <p class="system-projects">
-            Related software:
-            {% for project in system.projects %}
-              {% if project.url contains '://' %}
-                {% assign project_link = project.url %}
-              {% else %}
-                {% assign project_link = project.url | relative_url %}
-              {% endif %}
-              <a href="{{ project_link }}">{{ project.title | escape }}</a>
-              {%- unless forloop.last %}, {% endunless %}
-            {% endfor %}
-          </p>
-        {% endif %}
-        {% include project-publications.liquid publications=system.publications list=true %}
-        {% if system.links %}
-          <p class="system-projects">
-            {% for link in system.links %}
-              <a href="{{ link.url }}">{{ link.title | escape }}</a>
-              {%- unless forloop.last %} · {% endunless %}
-            {% endfor %}
-          </p>
-        {% endif %}
-      </div>
+      {% if system.projects or system.publications or system.links %}
+        <details class="system-related">
+          <summary>Related work</summary>
+          {% if system.projects %}
+            <p class="system-projects">
+              Related software:
+              {% for project in system.projects %}
+                {% if project.url contains '://' %}
+                  {% assign project_link = project.url %}
+                {% else %}
+                  {% assign project_link = project.url | relative_url %}
+                {% endif %}
+                <a href="{{ project_link }}">{{ project.title | escape }}</a>
+                {%- unless forloop.last %}, {% endunless %}
+              {% endfor %}
+            </p>
+          {% endif %}
+          {% include project-publications.liquid publications=system.publications list=true %}
+          {% if system.links %}
+            <p class="system-projects">
+              {% for link in system.links %}
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                {%- unless forloop.last %} · {% endunless %}
+              {% endfor %}
+            </p>
+          {% endif %}
+        </details>
+      {% endif %}
     </li>
   {% endfor %}
 </ul>

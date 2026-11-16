@@ -29,14 +29,14 @@ description: Yen-Ting Liu, a PhD candidate at UIUC working on microscopy systems
 <section id="systems" class="portfolio-section" aria-labelledby="systems-title">
   <div class="portfolio-section-heading">
     <h2 id="systems-title">Systems</h2>
-    <a href="#projects">Jump to Software</a>
+    {% include portfolio-section-switch.liquid current='systems' %}
   </div>
   {% include portfolio-systems.liquid %}
 </section>
 <section id="projects" class="portfolio-section" aria-labelledby="work-title">
   <div class="portfolio-section-heading">
     <h2 id="work-title">Software</h2>
-    <a href="#systems">Jump to Systems</a>
+    {% include portfolio-section-switch.liquid current='software' %}
   </div>
   {% assign projects = site.projects | concat: site.data.project_inventory | sort: 'importance' %}
   {% include portfolio-projects.liquid projects=projects %}

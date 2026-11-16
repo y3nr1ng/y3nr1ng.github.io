@@ -1,0 +1,16 @@
+<nav class="portfolio-section-switch" aria-label="Portfolio sections">
+  <a
+    href="#systems"
+    {% if include.current == 'systems' %}
+      aria-current="location"
+    {% endif %}
+    >Systems</a
+  >
+  <a
+    href="#projects"
+    {% if include.current == 'software' %}
+      aria-current="location"
+    {% endif %}
+    >Software</a
+  >
+</nav>
