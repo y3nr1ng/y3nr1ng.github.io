@@ -28,7 +28,6 @@
             {% for project in category.items %}
               <li>
                 <div class="project-label{% if project.thumbnail %} project-label-with-thumbnail{% endif %}">
-                  {% include portfolio-thumbnail.liquid thumbnail=project.thumbnail %}
                   <div>
                     {% if project.url contains '://' %}
                       {% assign project_link = project.url %}
@@ -50,6 +49,7 @@
                       </p>
                     {% endif %}
                   </div>
+                  {% include portfolio-thumbnail.liquid thumbnail=project.thumbnail %}
                 </div>
                 <div class="project-summary">
                   <p>{{ project.description }}</p>

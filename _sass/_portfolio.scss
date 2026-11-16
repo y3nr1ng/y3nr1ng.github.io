@@ -282,9 +282,9 @@ button:focus-visible {
 }
 .project-label-with-thumbnail {
   display: grid;
-  grid-template-columns: 112px minmax(0, 1fr);
-  gap: 1rem;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
+  align-content: start;
 }
 .portfolio-thumbnail {
   width: 112px;
@@ -302,12 +302,6 @@ button:focus-visible {
   color: var(--portfolio-muted);
   font-size: 0.75rem;
   line-height: 1.4;
-}
-@media (min-width: 601px) and (max-width: 1100px) {
-  .system-list > li:has(.project-label-with-thumbnail),
-  .project-list > li:has(.project-label-with-thumbnail) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-  }
 }
 .portfolio .system-title {
   font-size: 1.05rem;

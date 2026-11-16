@@ -2,7 +2,6 @@
   {% for system in site.data.systems %}
     <li>
       <div class="system-label{% if system.thumbnail %} project-label-with-thumbnail{% endif %}">
-        {% include portfolio-thumbnail.liquid thumbnail=system.thumbnail %}
         <div>
           <h3 class="system-title">
             {% if system.url %}
@@ -16,6 +15,7 @@
             {{- system.role | escape }}
           </p>
         </div>
+        {% include portfolio-thumbnail.liquid thumbnail=system.thumbnail %}
       </div>
       <div class="project-summary">
         <p>{{ system.description | escape }}</p>
