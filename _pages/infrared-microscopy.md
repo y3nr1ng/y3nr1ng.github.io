@@ -2,13 +2,17 @@
 layout: page
 title: Infrared laser-scanning microscopy
 permalink: /systems/infrared-microscopy/
-description: Microscope control software and firmware, electrical design, and hands-on instrument work at UIUC.
+description: Microscope control software and firmware, electrical design, and hands-on instrument work in the Bhargava Lab at UIUC.
 ---
 
 Infrared microscopy uses molecular absorption to form chemical images without
 adding stains or fluorescent labels. A laser-scanning microscope records these
 measurements across a specimen, combining spatial information with infrared
 spectral contrast.
+
+I work on these instruments in the
+[Chemical Imaging and Structures Laboratory (Bhargava Lab)](https://chemimage.illinois.edu/)
+at UIUC.
 
 The instrument brings together a tunable infrared laser, scanning optics,
 positioning hardware, detectors, and synchronized data acquisition. Optical
