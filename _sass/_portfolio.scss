@@ -262,23 +262,20 @@ button:focus-visible {
 .project-language {
   font-weight: 500;
 }
-.portfolio-section-nav {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 1.25rem;
-  margin: 0 0 1.25rem;
-  font-size: 0.95rem;
-}
-.portfolio-jump-label {
-  color: var(--portfolio-muted);
-}
-.portfolio-section-nav ul {
+.portfolio-section-heading {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1.25rem;
-  list-style: none;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.portfolio .portfolio-section-heading h2 {
   margin: 0;
-  padding: 0;
+}
+.portfolio .portfolio-section-heading > a {
+  color: var(--portfolio-muted);
+  font-size: 0.85rem;
 }
 .project-label-with-thumbnail {
   display: grid;
