@@ -381,6 +381,28 @@ button:focus-visible {
   font-size: 1.05rem;
   line-height: 1.8;
 }
+.article-figure {
+  margin: 1.75rem 0 2rem;
+}
+.article-image-link {
+  display: block;
+}
+.article-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.article-figure figcaption {
+  margin-top: 0.65rem;
+  color: var(--portfolio-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.figure-credit {
+  display: block;
+  margin-top: 0.3rem;
+}
 .site-footer {
   border: 0;
   background: transparent;
@@ -418,6 +440,12 @@ button:focus-visible {
   }
 }
 @media (max-width: 600px) {
+  .article-figure {
+    margin: 1.25rem 0 1.5rem;
+  }
+  .article-figure figcaption {
+    font-size: 0.9rem;
+  }
   .portfolio-hero {
     gap: 1rem;
     padding: 0.75rem 0 1.5rem;
