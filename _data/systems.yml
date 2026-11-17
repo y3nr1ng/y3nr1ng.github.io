@@ -51,6 +51,7 @@
     - title: DeconvLR
       url: https://github.com/y3nr1ng/DeconvLR
 - title: Single-molecule microscopy
+  url: /systems/single-molecule-microscopy/
   role: System design and image analysis
   description: Super-resolution imaging by locating individual fluorescent molecules. Related work includes system design, localization processing, 3D geometric analysis, and TORQUE-based workflows for single-molecule localization microscopy (SMLM).
   publications:

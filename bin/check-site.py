@@ -28,7 +28,7 @@ def check(destination):
     root = Path(destination).resolve()
     routes = ["", "projects", "projects/scopeengine", "projects/not-envi",
               "projects/simscope", "projects/video-editor", "systems/infrared-microscopy",
-              "systems/light-sheet-microscopy"]
+              "systems/light-sheet-microscopy", "systems/single-molecule-microscopy"]
     pages = {}
     for route in routes:
         path = root / route / "index.html"

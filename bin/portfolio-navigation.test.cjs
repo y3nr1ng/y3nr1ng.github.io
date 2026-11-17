@@ -7,7 +7,7 @@ const { JSDOM } = require("jsdom");
 const site = process.env.SITE_DIR;
 const page = () => new JSDOM(readFileSync(join(site, "index.html"), "utf8"), { url: "https://portfolio.test/" });
 
-for (const article of ["infrared-microscopy", "light-sheet-microscopy"]) {
+for (const article of ["infrared-microscopy", "light-sheet-microscopy", "single-molecule-microscopy"]) {
   test(`${article} keeps figures and publication references navigable`, { skip: !site }, () => {
     const dom = new JSDOM(readFileSync(join(site, "systems", article, "index.html"), "utf8"), {
       url: `https://portfolio.test/systems/${article}/`,
