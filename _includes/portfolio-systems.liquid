@@ -23,11 +23,10 @@
         </div>
       </div>
       {% if system.projects or system.publications or system.links %}
-        <details class="system-related">
-          <summary>Related work</summary>
+        <div class="system-related">
           {% if system.projects %}
             <p class="system-projects">
-              Related software:
+              Software:
               {% for project in system.projects %}
                 {% if project.url contains '://' %}
                   {% assign project_link = project.url %}
@@ -35,11 +34,11 @@
                   {% assign project_link = project.url | relative_url %}
                 {% endif %}
                 <a href="{{ project_link }}">{{ project.title | escape }}</a>
-                {%- unless forloop.last %}, {% endunless %}
+                {%- unless forloop.last %} · {% endunless %}
               {% endfor %}
             </p>
           {% endif %}
-          {% include project-publications.liquid publications=system.publications list=true %}
+          {% include project-publications.liquid publications=system.publications compact=true heading='Publications' %}
           {% if system.links %}
             <p class="system-projects">
               {% for link in system.links %}
@@ -48,7 +47,7 @@
               {% endfor %}
             </p>
           {% endif %}
-        </details>
+        </div>
       {% endif %}
     </li>
   {% endfor %}

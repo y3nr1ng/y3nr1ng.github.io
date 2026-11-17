@@ -33,23 +33,24 @@ test("section selectors identify their own section and link to real, distinct de
   }
 });
 
-test("system references use labeled native disclosures and thumbnails have text alternatives", { skip: !site }, () => {
+test("system references stay outside disclosures and thumbnails have text alternatives", { skip: !site }, () => {
   const dom = page();
   try {
     const document = dom.window.document;
-    const disclosures = [...document.querySelectorAll(".system-related")];
-    assert.ok(disclosures.length > 0);
-    for (const disclosure of disclosures) {
-      assert.equal(disclosure.tagName, "DETAILS");
-      const summary = disclosure.firstElementChild;
-      assert.equal(summary.tagName, "SUMMARY");
-      assert.ok(summary.textContent.trim());
-      assert.equal(summary.querySelector("a, button, input"), null);
-      assert.ok(disclosure.querySelector("a[href]"));
-      for (const link of disclosure.querySelectorAll("a[href]")) {
+    const references = [...document.querySelectorAll(".system-related")];
+    assert.ok(references.length > 0);
+    for (const reference of references) {
+      assert.equal(reference.closest('details, [hidden], [aria-hidden="true"]'), null);
+      assert.ok(reference.querySelector("a[href]"));
+      assert.equal(reference.querySelector('[hidden], [aria-hidden="true"]'), null);
+      for (const link of reference.querySelectorAll("a[href]")) {
         assert.ok(link.textContent.trim());
         const url = new URL(link.href);
         assert.ok(["https:", "http:"].includes(url.protocol));
+      }
+      for (const publication of reference.querySelectorAll(".project-publications a")) {
+        assert.ok(publication.getAttribute("aria-label")?.includes(publication.textContent.trim()));
+        assert.ok(publication.title.trim());
       }
     }
     const thumbnails = [...document.querySelectorAll(".portfolio-thumbnail img")];
