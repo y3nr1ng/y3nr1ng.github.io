@@ -24,6 +24,7 @@
     - title: ScopeEngine / ciMicroscope
       url: /projects/scopeengine/
 - title: Light-sheet microscopy
+  url: /systems/light-sheet-microscopy/
   thumbnail:
     src: /assets/img/portfolio/lightsheet-concept.webp
     alt: Draft concept illustration of light-sheet illumination and a stack of image planes
