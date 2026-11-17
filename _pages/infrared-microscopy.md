@@ -73,4 +73,5 @@ The publications below explore the team's instrument, detection, and software wo
 in more detail.
 
 {% assign system = site.data.systems | where: 'url', page.permalink | first %}
-{% include project-publications.liquid publications=system.publications %}
+{% capture publications_html %}{% include project-publications.liquid publications=system.publications %}{% endcapture %}
+{{ publications_html | strip }}

@@ -1,11 +1,42 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { readFileSync } = require("node:fs");
+const { readFileSync, existsSync } = require("node:fs");
 const { join } = require("node:path");
 const { JSDOM } = require("jsdom");
 
 const site = process.env.SITE_DIR;
 const page = () => new JSDOM(readFileSync(join(site, "index.html"), "utf8"), { url: "https://portfolio.test/" });
+
+test("the illustrated instrument article keeps figures and publication references navigable", { skip: !site }, () => {
+  const dom = new JSDOM(readFileSync(join(site, "systems/infrared-microscopy/index.html"), "utf8"), {
+    url: "https://portfolio.test/systems/infrared-microscopy/",
+  });
+  try {
+    const document = dom.window.document;
+    const publications = [...document.querySelectorAll(".related-publications a")];
+    assert.ok(publications.length > 0, "Publication HTML must render as links rather than a Markdown code block");
+    for (const link of publications) {
+      assert.ok(link.textContent.trim());
+      assert.equal(new URL(link.href).protocol, "https:");
+    }
+    const figures = [...document.querySelectorAll(".article-figure")];
+    assert.ok(figures.length > 0);
+    for (const figure of figures) {
+      const image = figure.querySelector("img");
+      const link = figure.querySelector(".article-image-link");
+      assert.ok(image.alt.trim());
+      assert.ok(image.width > 0 && image.height > 0);
+      const imageUrl = new URL(image.src);
+      assert.equal(imageUrl.origin, dom.window.location.origin);
+      assert.ok(existsSync(join(site, imageUrl.pathname)));
+      assert.equal(link.href, image.src);
+      assert.ok(figure.querySelector("figcaption").textContent.trim());
+      assert.ok(figure.querySelector('.figure-credit a[href="https://creativecommons.org/licenses/by/4.0/"]'));
+    }
+  } finally {
+    dom.window.close();
+  }
+});
 
 test("section selectors identify their own section and link to real, distinct destinations", { skip: !site }, () => {
   const dom = page();
