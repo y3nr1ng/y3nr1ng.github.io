@@ -15,6 +15,7 @@ const source = (name = "Alpha") => `<!doctype html><title>${name} — Yen-Ting L
   <main id="main-content"><div class="post"><h1>${name}</h1><article>
     <h2 id="context">Context</h2><p id="caption">A result</p>
     <img src="figure.svg" aria-describedby="caption"><a href="#context">Jump</a>
+    <video controls poster="poster.webp" aria-describedby="caption"><source src="movie.mp4" type="video/mp4"></video>
     <a href="/systems/beta/">Another system</a><script>throw new Error('not executed')</script>
   </article></div></main>`;
 
@@ -87,6 +88,9 @@ test("click opens existing page content, preserves accessible references and URL
   assert.equal(view.document.activeElement, view.document.querySelector("[data-detail-close]"));
   assert.equal(view.dialog.querySelector("img").src, "https://portfolio.test/projects/alpha/figure.svg");
   assert.equal(view.dialog.querySelector("img").getAttribute("aria-describedby"), "detail-content-caption");
+  assert.equal(view.dialog.querySelector("video").poster, "https://portfolio.test/projects/alpha/poster.webp");
+  assert.equal(view.dialog.querySelector("video source").src, "https://portfolio.test/projects/alpha/movie.mp4");
+  assert.equal(view.dialog.querySelector("video").getAttribute("aria-describedby"), "detail-content-caption");
   assert.equal(view.dialog.querySelector("script"), null);
   const ids = Array.from(view.document.querySelectorAll("[id]"), (node) => node.id);
   assert.equal(new Set(ids).size, ids.length);

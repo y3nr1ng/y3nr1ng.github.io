@@ -46,6 +46,23 @@ Layer results are then combined into one localization list for reconstruction.
   </figcaption>
 </figure>
 
+## Following nuclear pores in a living cell
+
+Nuclear pore complexes regulate transport across the boundary of the nucleus.
+Here, the protein Nup153 is labeled so that we can follow its distribution
+through a living cell in three dimensions.
+
+<figure class="article-figure">
+  <video controls playsinline preload="none" width="620" height="558" poster="{{ '/assets/img/systems/smlm/nuclear-pores-2019.webp' | relative_url }}" aria-label="Live three-dimensional imaging and localization of Nup153 nuclear pore proteins" aria-describedby="npc-movie-caption">
+    <source src="{{ '/assets/video/smlm/nuclear-pores-2019.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/smlm/nuclear-pores-2019.mp4' | relative_url }}">Open the nuclear pore movie.</a>
+  </video>
+  <figcaption id="npc-movie-caption">
+    Upper left: EGFP fluorescence. Lower left: accumulated localizations from the blinking dye. Right: reconstructed localizations colored by depth, with the original depth scale and elapsed time. This silent, approximately 18-second movie summarizes about 40 minutes of two-color imaging; press Play to watch.
+    <span class="figure-credit">Lu et al. (2019), <a href="https://www.nature.com/articles/s42003-019-0403-9#Sec19">Supplementary Movie 2</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Converted from AVI to MP4 for browser playback, with the full image and labels retained. <a href="{{ '/assets/video/smlm/nuclear-pores-2019.mp4' | relative_url }}" target="_blank" rel="noopener">Open the video separately.</a></span>
+  </figcaption>
+</figure>
+
 ## My part in the processing
 
 I designed the data-analysis program for this work. The published workflow uses

@@ -387,7 +387,8 @@ button:focus-visible {
 .article-image-link {
   display: block;
 }
-.article-figure img {
+.article-figure img,
+.article-figure video {
   display: block;
   max-width: 100%;
   height: auto;

@@ -22,7 +22,23 @@ for (const article of ["infrared-microscopy", "light-sheet-microscopy", "single-
       }
       const figures = [...document.querySelectorAll(".article-figure")];
       assert.ok(figures.length > 0);
+      if (article === "single-molecule-microscopy") assert.equal(document.querySelectorAll(".article-figure video").length, 1);
       for (const figure of figures) {
+        const video = figure.querySelector("video");
+        if (video) {
+          assert.ok(video.controls && video.hasAttribute("playsinline"));
+          assert.equal(video.autoplay, false);
+          assert.equal(video.preload, "none");
+          assert.ok(video.getAttribute("aria-label"));
+          assert.ok(document.getElementById(video.getAttribute("aria-describedby")));
+          for (const asset of [video.poster, video.querySelector("source").src]) {
+            const url = new URL(asset);
+            assert.equal(url.origin, dom.window.location.origin);
+            assert.ok(existsSync(join(site, url.pathname)));
+          }
+          assert.ok(figure.querySelector('.figure-credit a[href="https://creativecommons.org/licenses/by/4.0/"]'));
+          continue;
+        }
         const image = figure.querySelector("img");
         const link = figure.querySelector(".article-image-link");
         assert.ok(image.alt.trim());
