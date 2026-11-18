@@ -2,43 +2,83 @@
 layout: page
 title: Infrared laser-scanning microscopy
 permalink: /systems/infrared-microscopy/
-description: Infrared light, scanning optics, and instrument control for chemical imaging.
+description: The software engine behind infrared microscope acquisition, from measurement requests to stored images.
 ---
 
-An infrared chemical image records how absorption changes across a specimen.
-Different molecular vibrations contribute at different wavelengths, so the
-measurement gives us chemical contrast alongside spatial structure. The challenge
-is to collect those measurements over a large area while preserving both image
-detail and reliable spectra.
+The part of infrared laser-scanning microscopy that I most want to share is the
+software engine I wrote. ScopeEngine connects a requested measurement to the
+instruments, acquisition procedures, and data handling needed to carry it out.
+ciMicroscope is the desktop application that uses it to operate a QCL-based
+microscope in the [Bhargava Lab](https://chemimage.illinois.edu/) at UIUC.
 
-In the
-[Chemical Imaging and Structures Laboratory (Bhargava Lab)](https://chemimage.illinois.edu/)
-at UIUC, we develop infrared laser-scanning microscopes for this work. The
-[2023 IR-LSM paper](https://doi.org/10.1038/s41467-023-40740-w) brings together
-custom infrared optics, confocal detection, and synchronized acquisition. My
-contribution to that publication was programming microscope subroutines; my
-broader work on these instruments includes control software, firmware, electrical
-integration, and hands-on operation.
+A request can be simple to describe: image this section at several infrared
+bands. Carrying it out means coordinating laser tuning, scanning, detector
+readout, sample positioning, processing, and storage. I developed the engine
+around separating those responsibilities so that the application can describe
+the measurement without coordinating every device itself.
 
-## Choosing the chemical measurements
+## From a measurement request to individual acquisitions
 
-The quantum cascade laser is tuned to one infrared band at a time. A scan forms
-an image at that band; repeating the scan at selected bands adds chemical
-information at the same positions. We can acquire a small set of bands for a
-particular measurement or sample more of the spectrum when additional chemical
-information is needed. Each added band also adds acquisition time.
+Infrared absorption provides chemical contrast because different molecular
+vibrations contribute at different wavelengths. We tune the quantum cascade
+laser to a band, acquire an image, then repeat at the other requested bands.
+Covering a large section also requires a mosaic of stage positions.
 
-The recorded signal needs a reference: the published workflow measures a blank
-substrate before imaging to account for laser power and non-uniformity. This
-connects a detector reading to an absorption measurement that can be compared
-across positions and wavelengths.
+For example, a request for 25 tiles at three bands contains 75 individual image
+acquisitions. ScopeEngine represents the request as a job. Job providers expand
+its dimensions, such as positions and bands, into the individual acquisitions.
+A controller implements the acquisition procedure, while the runtime coordinates
+its execution and device assignments.
 
-## Scanning a focused beam across the sample
+This separation gives each part a specific responsibility. The application
+specifies what to collect; providers generate the steps; the controller knows
+how to acquire an image. Adding a dimension to a measurement does not require
+the desktop interface to contain every combination of hardware instructions.
 
-The instrument sweeps a focused beam with galvanometer mirrors. Its objectives,
-tube lens, and scan lens were designed together for the broad mid-infrared range,
-where common visible-microscope glasses are unsuitable. A confocal pinhole
-rejects stray reflections before the signal reaches the detector.
+## Connecting acquisition logic to different instruments
+
+A microscope brings together equipment with different vendor APIs and different
+capabilities. ScopeEngine gives controllers access to operations such as tuning
+a laser, moving a stage, or acquiring scanner data. Vendor drivers translate
+those operations into the calls required by a particular instrument.
+
+A device can expose the capabilities it actually supports. Similarly, one logical
+scanner operation can be backed by different hardware constructions. This lets
+acquisition logic use a common operation while hardware-specific behavior stays
+with its implementation.
+
+Production vendor drivers run in separate host processes. Commands pass over
+named-pipe gRPC, while large acquired data uses shared memory. This keeps vendor
+SDK loading and native dependencies outside the desktop application's process
+and separates control messages from the transfer of image data.
+
+## Following the data through a measurement
+
+The controller assembles acquired samples into an image or spectrum and attaches
+the result to its job. Processing can transform that data without taking over
+hardware control. Dataset storage keeps results together with acquisition
+settings and metadata, while the application observes updates for display.
+
+The runtime also manages cancellation and cleanup. Stopping a measurement has
+to unwind the active procedure and release its device assignments and other
+resources. That lifecycle belongs in the engine alongside execution, so that
+individual application workflows do not each have to coordinate it themselves.
+
+The [ScopeEngine page]({{ '/projects/scopeengine/' | relative_url }}) provides
+more software context and a link to an earlier public microscope demonstration.
+The current framework source is private.
+
+## The microscope the software serves
+
+The optical layout below is from our team's
+[2023 IR-LSM paper](https://doi.org/10.1038/s41467-023-40740-w). It shows the
+measurement the software must coordinate: a tunable infrared source, scanning
+mirrors, custom refractive optics, and confocal detection.
+
+The published design records both scan directions and aligns detector samples
+using scanner position feedback. It also measures a blank substrate to reference
+laser power and non-uniformity. These details make image formation a coordinated
+measurement, with position, wavelength, and detector readings kept in agreement.
 
 <figure class="article-figure">
   <a class="article-image-link" href="{{ '/assets/img/systems/infrared/optical-layout-2023.webp' | relative_url }}" target="_blank" rel="noopener" aria-label="Open the published optical layout at full size in a new tab">
@@ -50,25 +90,12 @@ rejects stray reflections before the signal reaches the detector.
   </figcaption>
 </figure>
 
-The fast scan axis records in both directions, reducing time spent returning
-the beam between lines. That also creates a coordination problem: detector
-samples from the forward and reverse sweeps must land at the correct image
-positions. The published system tracks the scanner's position signal to align
-the lines, while the data-acquisition hardware synchronizes scanning, laser
-triggers, and detector readout.
+## From individual scans to a chemical image
 
-Sharpness is only part of the measurement. The paper evaluates spatial contrast
-with test targets and modulation transfer functions (MTF), alongside noise and
-spectral agreement with FT-IR measurements. Together, these checks examine whether
-the instrument preserves spatial detail and usable chemical information.
-
-## From one field of view to a whole section
-
-The adult zebrafish image below shows why coverage matters: the same section
-contains brain, gills, muscle, liver, intestine, and ovary. Selected infrared
-bands produce differences in contrast across these structures without adding
-stains to the section being measured. These are false colors assigned to the
-measured bands, rather than the specimen's visible appearance.
+The adult zebrafish section below contains many organs within one image. It was
+assembled from overlapping scan fields, with selected infrared absorption bands
+assigned to false-color channels. The colors show differences in the measured
+chemical contrast, without staining the section being measured.
 
 <figure class="article-figure">
   <a class="article-image-link" href="{{ '/assets/img/systems/infrared/zebrafish-2023.webp' | relative_url }}" target="_blank" rel="noopener" aria-label="Open the published zebrafish chemical image at full size in a new tab">
@@ -80,37 +107,18 @@ measured bands, rather than the specimen's visible appearance.
   </figcaption>
 </figure>
 
-A whole section spans many scan fields. The stage moves between overlapping
-tiles, and the images are blended into a mosaic. The acquisition therefore needs
-to coordinate position, focus, wavelength selection, and frame collection across
-the sample, rather than simply record one image repeatedly.
+Collecting a section like this means repeating acquisitions across positions and
+bands, then retaining the information needed to interpret the resulting channels.
+That connection between an experimental request, physical instruments, and a
+usable dataset is the central idea behind my engine work.
 
-## Averaging without mixing measurements
+The published figures document the team's earlier instrument. Kevin Yeh led its
+microscope build and original control software; the 2023 paper credits me and
+Manu Mehta with microscope subroutines. ScopeEngine is the current framework
+described above.
 
-Averaging repeated frames reduces noise, but only while they describe the same
-measurement. In the 2023 system, software keeps a circular history of recent
-frames for averaging. When the monitored stage, laser, or other equipment changes
-state, that history is cleared so frames from different conditions are not mixed.
-The software then collects the image channels as the laser steps through the
-requested bands.
-
-This is one example of how instrument state becomes part of image formation.
-A measurement depends on the optics and detector, but also on the software
-knowing which samples belong together.
-
-## My work on the instruments
-
-My primary work is control software and firmware, with additional contributions
-to electrical design. I also help build, align, integrate, and maintain the
-microscopes. These are team-built instruments: the 2023 paper credits Kevin Yeh
-with the original control software and microscope build, and credits me and
-Manu Mehta with microscope subroutines.
-
-My ongoing software work includes ScopeEngine, which organizes acquisition
-workflows, and ciMicroscope, a desktop application for operating the microscope.
-The [software page]({{ '/projects/scopeengine/' | relative_url }}) describes that
-framework and its device interfaces. The published instrument above provides
-context for the measurements this broader software work supports.
+Alongside the software, I work on firmware and electrical design and help build,
+align, integrate, and maintain the instruments.
 
 {% assign system = site.data.systems | where: 'url', page.permalink | first %}
 {% capture publications_html %}{% include project-publications.liquid publications=system.publications %}{% endcapture %}

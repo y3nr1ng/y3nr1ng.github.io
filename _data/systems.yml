@@ -6,7 +6,7 @@
   url: /systems/infrared-microscopy/
   role: Control software and firmware
   institution: UIUC · Bhargava Lab
-  description: Laser-scanning microscopes that form chemical images from infrared absorption. The instruments combine laser control, scanning optics, positioning hardware, detectors, and synchronized acquisition.
+  description: Laser-scanning microscopes that form chemical images from infrared absorption. My software engine, ScopeEngine, connects measurement requests to instrument control, acquisition, processing, and data storage.
   publications:
     - title: Infrared spectroscopic laser scanning confocal microscopy for whole-slide chemical imaging
       label: Nature Communications, 2023
