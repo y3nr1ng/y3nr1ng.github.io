@@ -52,8 +52,8 @@
       url: https://github.com/y3nr1ng/DeconvLR
 - title: Single-molecule microscopy
   url: /systems/single-molecule-microscopy/
-  role: System design and image analysis
-  description: Super-resolution imaging by locating individual fluorescent molecules. Related work includes system design, localization processing, 3D geometric analysis, and TORQUE-based workflows for single-molecule localization microscopy (SMLM).
+  role: Localization analysis and distributed processing
+  description: Three-dimensional microtubule reconstruction and nuclear pore protein imaging using light-sheet localization microscopy. My work includes the analysis program and moving SMLM processing onto the lab's cluster with TORQUE and early Dask.
   publications:
     - title: Lightsheet localization microscopy enables fast, large-scale, and three-dimensional super-resolution imaging
       label: Communications Biology, 2019
@@ -75,7 +75,7 @@
     caption: Concept illustration
   role: Cluster services and data management
   institution: Academia Sinica
-  description: Adapted an ACQUIFER system as the starting point for the lab's computing services and management. We moved most light-sheet preprocessing to the small lab cluster and used it for dataset storage, processing, and bookkeeping.
+  description: Adapted an ACQUIFER system as the starting point for the lab's computing services and management. Later light-sheet work used the small in-lab cluster for batch processing across multiple nodes, dataset storage, and bookkeeping.
 - title: Optical camera communication
   role: Protocol design and specification
   institution: NTU · 2015–2016
