@@ -2,78 +2,27 @@
 layout: page
 title: Infrared laser-scanning microscopy
 permalink: /systems/infrared-microscopy/
-description: The software engine behind infrared microscope acquisition, from measurement requests to stored images.
+description: Infrared laser-scanning microscopy for chemical imaging across whole tissue sections.
 ---
 
-The part of infrared laser-scanning microscopy that I most want to share is the
-software engine I wrote. ScopeEngine connects a requested measurement to the
-instruments, acquisition procedures, and data handling needed to carry it out.
-ciMicroscope is the desktop application that uses it to operate a QCL-based
-microscope in the [Bhargava Lab](https://chemimage.illinois.edu/) at UIUC.
+Infrared absorption provides chemical contrast without adding stains or
+fluorescent labels. Different molecular vibrations contribute at different
+wavelengths, so images collected across those bands reveal chemical differences
+alongside tissue structure.
 
-A request can be simple to describe: image this section at several infrared
-bands. Carrying it out means coordinating laser tuning, scanning, detector
-readout, sample positioning, processing, and storage. I developed the engine
-around separating those responsibilities so that the application can describe
-the measurement without coordinating every device itself.
+In the [Bhargava Lab](https://chemimage.illinois.edu/) at UIUC, we develop
+infrared laser-scanning microscopes to collect these measurements over large
+areas. The instrument has to preserve spatial detail and reliable spectra while
+covering a whole section. My work connects the control software and firmware
+to that physical measurement.
 
-## From a measurement request to individual acquisitions
-
-Infrared absorption provides chemical contrast because different molecular
-vibrations contribute at different wavelengths. We tune the quantum cascade
-laser to a band, acquire an image, then repeat at the other requested bands.
-Covering a large section also requires a mosaic of stage positions.
-
-For example, a request for 25 tiles at three bands contains 75 individual image
-acquisitions. ScopeEngine represents the request as a job. Job providers expand
-its dimensions, such as positions and bands, into the individual acquisitions.
-A controller implements the acquisition procedure, while the runtime coordinates
-its execution and device assignments.
-
-This separation gives each part a specific responsibility. The application
-specifies what to collect; providers generate the steps; the controller knows
-how to acquire an image. Adding a dimension to a measurement does not require
-the desktop interface to contain every combination of hardware instructions.
-
-## Connecting acquisition logic to different instruments
-
-A microscope brings together equipment with different vendor APIs and different
-capabilities. ScopeEngine gives controllers access to operations such as tuning
-a laser, moving a stage, or acquiring scanner data. Vendor drivers translate
-those operations into the calls required by a particular instrument.
-
-A device can expose the capabilities it actually supports. Similarly, one logical
-scanner operation can be backed by different hardware constructions. This lets
-acquisition logic use a common operation while hardware-specific behavior stays
-with its implementation.
-
-Production vendor drivers run in separate host processes. Commands pass over
-named-pipe gRPC, while large acquired data uses shared memory. This keeps vendor
-SDK loading and native dependencies outside the desktop application's process
-and separates control messages from the transfer of image data.
-
-## Following the data through a measurement
-
-The controller assembles acquired samples into an image or spectrum and attaches
-the result to its job. Processing can transform that data without taking over
-hardware control. Dataset storage keeps results together with acquisition
-settings and metadata, while the application observes updates for display.
-
-The runtime also manages cancellation and cleanup. Stopping a measurement has
-to unwind the active procedure and release its device assignments and other
-resources. That lifecycle belongs in the engine alongside execution, so that
-individual application workflows do not each have to coordinate it themselves.
-
-The [ScopeEngine page]({{ '/projects/scopeengine/' | relative_url }}) provides
-more software context and a link to an earlier public microscope demonstration.
-The current framework source is private.
-
-## The microscope the software serves
+## Scanning a focused infrared beam
 
 The optical layout below is from our team's
-[2023 IR-LSM paper](https://doi.org/10.1038/s41467-023-40740-w). It shows the
-measurement the software must coordinate: a tunable infrared source, scanning
-mirrors, custom refractive optics, and confocal detection.
+[2023 IR-LSM paper](https://doi.org/10.1038/s41467-023-40740-w). It combines a
+tunable infrared source, scanning mirrors, custom refractive optics, and confocal
+detection. The optics must maintain a focused spot across both the scan field
+and the range of infrared bands being measured.
 
 The published design records both scan directions and aligns detector samples
 using scanner position feedback. It also measures a blank substrate to reference
@@ -109,16 +58,20 @@ chemical contrast, without staining the section being measured.
 
 Collecting a section like this means repeating acquisitions across positions and
 bands, then retaining the information needed to interpret the resulting channels.
-That connection between an experimental request, physical instruments, and a
-usable dataset is the central idea behind my engine work.
+A small set of bands can provide selected chemical contrast; sampling more of
+the spectrum adds chemical information and acquisition time.
 
 The published figures document the team's earlier instrument. Kevin Yeh led its
 microscope build and original control software; the 2023 paper credits me and
-Manu Mehta with microscope subroutines. ScopeEngine is the current framework
-described above.
+Manu Mehta with microscope subroutines.
 
-Alongside the software, I work on firmware and electrical design and help build,
-align, integrate, and maintain the instruments.
+## My work on the instruments
+
+My primary contribution is control software and firmware. I also work on
+electrical design and help build, align, integrate, and maintain the instruments.
+The [ScopeEngine article]({{ '/projects/scopeengine/' | relative_url }}) explains
+the software engine I wrote, including acquisition jobs, device integration,
+data handling, and the WIP survey of other acquisition software.
 
 {% assign system = site.data.systems | where: 'url', page.permalink | first %}
 {% capture publications_html %}{% include project-publications.liquid publications=system.publications %}{% endcapture %}

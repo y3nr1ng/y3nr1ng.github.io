@@ -20,26 +20,73 @@ publications:
     url: https://doi.org/10.1117/12.3042353
 ---
 
-Microscope acquisition involves devices with different APIs, timing behavior,
-and failure modes.
+I wrote ScopeEngine to connect a requested measurement to the instruments,
+acquisition procedures, and data handling needed to carry it out. ciMicroscope
+is the desktop application that uses the engine to operate a QCL-based
+laser-scanning microscope in the Bhargava Lab at UIUC.
 
-ScopeEngine provides the acquisition framework, while ciMicroscope is a desktop
-application for a QCL-based laser-scanning microscope. I work on both in the
-Bhargava Lab. The framework separates
-requested work from acquisition procedures and the instrument capabilities used
-to execute them. This gives hardware-specific behavior a defined place without
-putting every vendor API into the application workflow.
+A request can be simple to describe: image this section at several infrared
+bands. Carrying it out means coordinating laser tuning, scanning, detector
+readout, sample positioning, processing, and storage. I developed the engine
+around separating those responsibilities so the application can describe the
+measurement without coordinating every device itself. The
+[IR-LSM article]({{ '/systems/infrared-microscopy/' | relative_url }}) introduces
+the instrument and its chemical images.
 
-Vendor drivers run in separate processes,
-with control messages over named-pipe gRPC and large acquired data transferred
-through shared memory. This is intended to isolate vendor SDK dependencies and
-failures from the application process. Protocol and resource-lifecycle checks are
-part of the verification approach, including rejecting incompatible clients and
-invalid readers without leaving active read sessions or buffer leases.
+## From a measurement request to individual acquisitions
 
-Software verification and physical-instrument validation are distinct. Simulated
-tests exercise software boundaries; connected-instrument tests depend on the
-specific hardware and setup.
+Infrared absorption provides chemical contrast because different molecular
+vibrations contribute at different wavelengths. We tune the quantum cascade
+laser to a band, acquire an image, then repeat at the other requested bands.
+Covering a large section also requires a mosaic of stage positions.
+
+For example, a request for 25 tiles at three bands contains 75 individual image
+acquisitions. ScopeEngine represents the request as a job. Job providers expand
+its dimensions, such as positions and bands, into the individual acquisitions.
+A controller implements the acquisition procedure, while the runtime coordinates
+its execution and device assignments.
+
+This separation gives each part a specific responsibility. The application
+specifies what to collect; providers generate the steps; the controller knows
+how to acquire an image. Adding a dimension to a measurement does not require
+the desktop interface to contain every combination of hardware instructions.
+
+## Connecting acquisition logic to different instruments
+
+A microscope brings together equipment with different vendor APIs and different
+capabilities. ScopeEngine gives controllers access to operations such as tuning
+a laser, moving a stage, or acquiring scanner data. Vendor drivers translate
+those operations into the calls required by a particular instrument.
+
+A device can expose the capabilities it actually supports. Similarly, one logical
+scanner operation can be backed by different hardware constructions. This lets
+acquisition logic use a common operation while hardware-specific behavior stays
+with its implementation.
+
+Production vendor drivers run in separate host processes. Commands pass over
+named-pipe gRPC, while large acquired data uses shared memory. This keeps vendor
+SDK loading and native dependencies outside the desktop application's process
+and separates control messages from the transfer of image data.
+
+## Following the data through a measurement
+
+The controller assembles acquired samples into an image or spectrum and attaches
+the result to its job. Processing can transform that data without taking over
+hardware control. Dataset storage keeps results together with acquisition
+settings and metadata, while the application observes updates for display.
+
+The runtime also manages cancellation and cleanup. Stopping a measurement has
+to unwind the active procedure and release its device assignments and other
+resources. That lifecycle belongs in the engine alongside execution, so that
+individual application workflows do not each have to coordinate it themselves.
+
+## Software and instrument checks
+
+Protocol and resource-lifecycle checks include rejecting incompatible clients
+and invalid readers without leaving active read sessions or buffer leases.
+Software verification and physical-instrument validation are distinct: simulated
+tests exercise software boundaries, while connected-instrument tests depend on
+the particular hardware and setup.
 
 The current framework source is private. The
 [earlier public microscopy software release](https://github.com/chemimage/Cisl.Qclm.Public)
