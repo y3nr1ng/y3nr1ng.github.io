@@ -80,6 +80,46 @@ to unwind the active procedure and release its device assignments and other
 resources. That lifecycle belongs in the engine alongside execution, so that
 individual application workflows do not each have to coordinate it themselves.
 
+## Existing acquisition software (WIP)
+
+Initial documentation survey, November 18, 2026. This is a working list of
+relevant systems and their documented approaches, not an exhaustive inventory,
+a benchmark, or a completed feature comparison with ScopeEngine.
+
+**Microscope control and acquisition frameworks**
+
+- [Micro-Manager](https://micro-manager.org/): microscope automation, multidimensional acquisition, and a C++ device-adapter interface shared across supported hardware.
+- [Pycro-Manager](https://pycro-manager.readthedocs.io/en/latest/backends.html): Python acquisition APIs over Micro-Manager, with Java and Python backends and desktop or headless operation.
+- [pymmcore-plus](https://pymmcore-plus.github.io/pymmcore-plus/): direct Python access to MMCore, a Python multidimensional acquisition engine, events, and optional Qt/napari interfaces.
+- [ExEngine](https://exengine.readthedocs.io/en/latest/): an execution toolkit separating device backends, reusable acquisition events, storage, and application frontends, with explicit threading utilities.
+- [Python-Microscope](https://python-microscope.org/doc/architecture/device-server.html): hardware interfaces with separate device-server processes that can also run across different computers.
+- [Microscope-Cockpit](https://microscope-cockpit.org/): a bespoke-microscope interface using Python-Microscope devices and hardware signals for experiment timing.
+- [ImSwitch](https://imswitch.readthedocs.io/en/stable/): modular Python microscope control using a model-view-presenter architecture across multiple imaging modalities.
+- [navigate](https://thedeanlab.github.io/navigate/): light-sheet acquisition with reusable acquisition/analysis features chained into custom protocols, hardware abstraction, and plugins.
+- [ScanImage](https://docs.scanimage.org/Configuration/Imaging%2BSystems.html): scanning-microscope acquisition with documented linear, resonant, SLM, and vDAQ scan systems and hardware-specific timing configurations.
+
+**Broader experimental-control frameworks**
+
+- [Bluesky](https://blueskyproject.io/bluesky/v1.16.0/tutorial.html): experimental plans interpreted by a RunEngine, with coordinated device execution, interruption handling, and structured data/metadata documents.
+- [ScopeFoundry](https://scopefoundry.org/docs/): Python/Qt applications built from hardware-component and measurement plugins, including reusable scanning and sequencing measurements.
+- [ACQ4](https://acq4.readthedocs.io/en/latest/userGuide/principles.html): modules submit synchronized device tasks to a central manager that coordinates device access, execution, and data management.
+- [Bonsai](https://bonsai-rx.org/): reactive visual workflows for acquisition, processing, and coordination of sensors and hardware, with C# extension points.
+
+**Commercial microscope applications**
+
+- [Nikon NIS-Elements](https://www.microscope.healthcare.nikon.com/products/software/nis-elements/software-packages): acquisition, device control, analysis, and graphical JOBS workflows; features depend on the package and modules.
+- [ZEISS ZEN](https://www.zeiss.com/microscopy/us/products/software/zeiss-zen.html): acquisition and analysis with automation, multidimensional experiments, and scripting options across its modules.
+- [Leica LAS X](https://www.leica-microsystems.com/products/microscope-software/p/leica-las-x-ls/): an integrated microscope application covering acquisition, processing, and analysis within the Leica software ecosystem.
+
+The comparison is still in progress. Separating workflows from hardware or placing
+devices in separate processes already appears in other systems. I am comparing
+how each represents acquisition requests, composes device capabilities, handles
+scanner/detector timing, moves image data, manages cancellation and resource
+ownership, and separates the engine from its user interface. ScopeEngine's own
+job/controller/operation boundaries and driver-host/shared-memory implementation
+provide concrete points to examine, rather than establishing uniqueness by
+themselves.
+
 ## Software and instrument checks
 
 Protocol and resource-lifecycle checks include rejecting incompatible clients
