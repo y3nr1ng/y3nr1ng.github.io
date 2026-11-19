@@ -3,8 +3,8 @@ layout: page
 category: Instrument control
 title: ScopeEngine / ciMicroscope
 permalink: /projects/scopeengine/
-description: Acquisition software connecting microscope workflows with vendor-specific
-  instruments.
+description: Acquisition engine for camera, laser-scanning, and spectral measurements,
+  with explicit device ownership and data handling.
 discipline: Instrument control
 importance: 1
 featured: true
@@ -20,18 +20,18 @@ publications:
     url: https://doi.org/10.1117/12.3042353
 ---
 
-I wrote ScopeEngine to connect a requested measurement to the instruments,
-acquisition procedures, and data handling needed to carry it out. ciMicroscope
-is the desktop application that uses the engine to operate a QCL-based
-laser-scanning microscope in the Bhargava Lab at UIUC.
+A camera delivers image frames. A laser-scanning microscope starts with detector
+samples, scanner motion, and timing signals that have to be assembled into an
+image. A spectral measurement repeats that work as the laser changes wavelength.
+These are different acquisition procedures, even when the operator wants the
+same things: preview the sample, focus, record a region, and save a dataset.
 
-A request can be simple to describe: image this section at several infrared
-bands. Carrying it out means coordinating laser tuning, scanning, detector
-readout, sample positioning, processing, and storage. I developed the engine
-around separating those responsibilities so the application can describe the
-measurement without coordinating every device itself. The
-[IR-LSM article]({{ '/systems/infrared-microscopy/' | relative_url }}) introduces
-the instrument and its chemical images.
+I wrote ScopeEngine to bring those procedures into one C#/.NET acquisition
+engine. It supports camera capture, galvo scanning, and resonant frame or
+stage-stripe acquisition through common planning, device ownership, and data
+handling. ciMicroscope is the desktop application that uses it in the Bhargava
+Lab at UIUC. The [IR-LSM article]({{ '/systems/infrared-microscopy/' | relative_url }})
+introduces the instrument and its chemical images.
 
 ## From a measurement request to individual acquisitions
 
@@ -58,33 +58,79 @@ capabilities. ScopeEngine gives controllers access to operations such as tuning
 a laser, moving a stage, or acquiring scanner data. Vendor drivers translate
 those operations into the calls required by a particular instrument.
 
-A device can expose the capabilities it actually supports. Similarly, one logical
-scanner operation can be backed by different hardware constructions. This lets
-acquisition logic use a common operation while hardware-specific behavior stays
-with its implementation.
+The controller declares the combination of operations it requires. A laser
+assignment, for example, can require emission control and wavelength tuning on
+the same device, with current control available as an optional capability.
+Compatibility predicates can check whether that combination supports the
+acquisition. This makes the required capabilities explicit before the controller
+uses them.
+
+One logical scanner operation can also be backed by different hardware
+constructions. The common operation gives acquisition logic a stable interface,
+while the specialized controller still handles the timing and reconstruction
+that its acquisition mode needs.
 
 Production vendor drivers run in separate host processes. Commands pass over
 named-pipe gRPC, while large acquired data uses shared memory. This keeps vendor
 SDK loading and native dependencies outside the desktop application's process
 and separates control messages from the transfer of image data.
 
-## Following the data through a measurement
+## Sharing devices during nested acquisition
 
-The controller assembles acquired samples into an image or spectrum and attaches
-the result to its job. Processing can transform that data without taking over
-hardware control. Dataset storage keeps results together with acquisition
-settings and metadata, while the application observes updates for display.
+An autofocus operation can need the same camera and positioning devices as the
+acquisition that requested it. ScopeEngine manages these transitions through
+controller contexts: the current context can be suspended, another activated,
+and the caller resumed afterward. Device assignments and leases make ownership
+explicit across those transitions.
 
-The runtime also manages cancellation and cleanup. Stopping a measurement has
-to unwind the active procedure and release its device assignments and other
-resources. That lifecycle belongs in the engine alongside execution, so that
-individual application workflows do not each have to coordinate it themselves.
+The runtime also carries an execution fault scope through nested contexts. When a
+device-operation fault is reported to that scope, the first fault is recorded before recovery
+notifications propagate to dependent operations. Cleanup can report additional
+failures while retaining the cause that stopped the measurement. That gives
+stopping and failure handling a place in the engine alongside normal execution.
+
+## Bounding pending writes
+
+Acquisition, processing, display, and storage consume data at different rates.
+The controller attaches acquired data to its job; processors can transform it
+without taking over hardware control; storage records results with their
+settings and metadata.
+
+A slow writer should have an explicit effect on the pipeline. ScopeEngine's
+storage session limits pending writes by both item count and estimated bytes.
+It reserves capacity before creating the queued data snapshot, and waits when
+the configured budget is occupied. This controls admission to that storage queue
+instead of allowing completed snapshots to accumulate there without a limit.
+The byte accounting is estimated, and one oversized output can exceed the byte
+budget; it is not a hard limit on total application memory.
+
+Different parts of the acquisition can need different policies. The resonant
+queue of completed frames drops older frames when full, while the storage queue
+waits for capacity. These policies make the behavior of each handoff explicit.
+
+Production driver hosts transfer large blocks through memory-mapped buffers with
+read sessions and explicit leases. This keeps their lifetime separate from the
+control messages. Arrays are copied into the mappings, and the host tracks when
+each transferred buffer is acknowledged, released, or expired.
 
 ## Existing acquisition software (WIP)
 
-Initial documentation survey, November 18, 2026. This is a working list of
-relevant systems and their documented approaches, not an exhaustive inventory,
-a benchmark, or a completed feature comparison with ScopeEngine.
+Documentation and targeted source review, November 18, 2026. This is a working
+comparison of relevant systems, not an exhaustive inventory or a performance
+ranking. Open-source implementations were examined at pinned revisions; current
+commercial applications remain documentation-only. ScanImage source inspection
+used a historical 5.3.1 snapshot, separate from current product documentation.
+
+The source review puts ScopeEngine's emphasis on three concrete design choices:
+required and optional operations matched to one device identity; owned controller
+contexts for nested acquisition; and explicit transfer/storage lifetimes and
+queue policies. The examples above explain what those choices do in this engine.
+Other systems provide overlapping capabilities through different models.
+
+Two narrower comparisons from the inspected source are worth following up:
+
+- **Storage admission:** ScopeEngine applies item and estimated-byte budgets before queuing retained outputs. The reviewed [ExEngine data handler](https://github.com/micro-manager/ExEngine/blob/43ceac3743741edb37a719884ed80c11ce3b3fb1/src/exengine/kernel/data_handler.py) uses unbounded default queues. Applications can add their own limits; the comparison here is the policy built into these particular storage handoffs.
+- **Teardown diagnostics:** ScopeEngine collects acquisition and cleanup failures so the causes remain available together. The reviewed [navigate feature-container cleanup](https://github.com/TheDeanLab/navigate/blob/b9c747a564eb32062c0a1a5e12389ae7b37c045e/src/navigate/model/features/feature_container.py#L455) discards cleanup-callback exceptions. Other navigate execution paths log errors; this is a difference at that cleanup boundary, not a general reliability ranking.
 
 **Microscope control and acquisition frameworks**
 
@@ -111,14 +157,16 @@ a benchmark, or a completed feature comparison with ScopeEngine.
 - [ZEISS ZEN](https://www.zeiss.com/microscopy/us/products/software/zeiss-zen.html): acquisition and analysis with automation, multidimensional experiments, and scripting options across its modules.
 - [Leica LAS X](https://www.leica-microsystems.com/products/microscope-software/p/leica-las-x-ls/): an integrated microscope application covering acquisition, processing, and analysis within the Leica software ecosystem.
 
-The comparison is still in progress. Separating workflows from hardware or placing
-devices in separate processes already appears in other systems. I am comparing
-how each represents acquisition requests, composes device capabilities, handles
-scanner/detector timing, moves image data, manages cancellation and resource
-ownership, and separates the engine from its user interface. ScopeEngine's own
-job/controller/operation boundaries and driver-host/shared-memory implementation
-provide concrete points to examine, rather than establishing uniqueness by
-themselves.
+ExEngine is a close comparison for reusable execution events and device backends;
+pymmcore-plus for a replaceable acquisition engine; ACQ4 for synchronized tasks
+and device reservations; and navigate for programmable imaging and shared-memory
+data. Their implementations make workflow separation, asynchronous execution,
+and cleanup shared ground for comparison.
+
+The next step is to compare equivalent acquisitions: the same device needs,
+nested autofocus, a blocked read, and slow storage. That would establish how the
+designs behave under the same conditions. The review so far does not establish
+a speed, reliability, or image-quality advantage.
 
 ## Software and instrument checks
 
