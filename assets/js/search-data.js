@@ -16,7 +16,7 @@ ninja.data = [{
               window.location.href = "/projects/not-envi/";
             },},{id: "projects-scopeengine-cimicroscope",
           title: 'ScopeEngine / ciMicroscope',
-          description: "Acquisition software connecting microscope workflows with vendor-specific instruments.",
+          description: "Acquisition engine for camera, laser-scanning, and spectral measurements, with explicit device ownership and data handling.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/scopeengine/";
             },},{id: "projects-simscope",
